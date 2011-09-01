@@ -1,0 +1,4 @@
+CS 471 Lab 1
+@author J. Andrew Marshall <jmarsha6@binghamton.edu>
+
+The limit of an integer is 32 bits. When an overflow occurs, the value wraps around, e.g. adding one to the maximum value of an unsigned integer results in a value of 0, since the highest bit (and only 1 bit) cannot be stored.

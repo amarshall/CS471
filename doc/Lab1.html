@@ -1,0 +1,160 @@
+<!DOCTYPE doctype PUBLIC "-//w3c//dtd html 4.0 transitional//en">
+<!-- saved from url=(0057)http://bingweb.binghamton.edu/~head/CS471/HW/lab1F11.html -->
+<html lang="en-us"><head><meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+
+
+
+  
+  
+
+  
+  <meta content="Eileen Head" name="Author">
+
+  
+  <meta content="Mozilla/4.73 [en] (Win98; U) [Netscape]" name="GENERATOR"><title>CS471-L1 C, Python and Ruby</title></head><body style="color: rgb(0, 0, 0); background-color: rgb(255, 255, 249);" alink="#3333ff" link="#000099" vlink="#000099">
+<center>
+<h3>Programming Languages<br>
+&nbsp;
+Lab activity 1</h3>
+</center>
+
+<h4>Purpose:&nbsp; </h4>
+
+To examine the basic notions of programming languages via a review of C
+and gentle use of scripting languages, Ruby and Python.
+<br>
+
+<ol>
+
+  <li>Consider the following <span style="font-weight: bold;">C</span>
+program program with multiple errors which are underlined:</li>
+  <dl>
+    <dd> <br>
+    </dd>
+    <dd><span style="font-family: monospace;">#include
+&lt;stdio.h&gt;<br></span><span style="font-family: monospace;">&nbsp;int _Flag = 0;</span><br>
+      <span style="font-family: monospace;">&nbsp;<span style="text-decoration: underline;">int xy; char c , float rr;</span></span><br>
+      <span style="font-family: monospace;">&nbsp;<span style="text-decoration: underline;">int arr#1[10];</span></span><br>
+      <span style="font-family: monospace;">&nbsp;<span style="text-decoration: underline;">int _Bool;</span></span><br style="text-decoration: underline;">
+      <span style="font-family: monospace; text-decoration: underline;"></span><br>
+      <span style="font-family: monospace;">&nbsp;int chg(int&nbsp; flag)&nbsp; {</span><br>
+      <span style="font-family: monospace;">&nbsp;&nbsp;&nbsp;&nbsp; <span style="text-decoration: underline;">if (flag = _Flag) {</span></span><br>
+      <span style="font-family: monospace;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span style="text-decoration: underline;">y = 33;&nbsp;&nbsp; </span></span><br>
+      <span style="font-family: monospace;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span style="text-decoration: underline;">arr#1[10] = 10;</span></span><br>
+      <span style="font-family: monospace;">&nbsp;&nbsp;&nbsp;&nbsp; } else {</span><br>
+      <span style="font-family: monospace;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; arr[10] = 1.9;</span><br>
+      <span style="font-family: monospace;">&nbsp;&nbsp;&nbsp;&nbsp; }</span><br>
+      <span style="font-family: monospace;">&nbsp;&nbsp;&nbsp;&nbsp; return flag;</span><br>
+      <span style="font-family: monospace;">&nbsp;}</span><br>
+      <span style="font-family: monospace;">&nbsp;int main (void){ </span><br>
+      <span style="font-family: monospace;">&nbsp;&nbsp;&nbsp;&nbsp; <span style="text-decoration: underline;">int sizeof = 100;</span></span><br>
+      <span style="font-family: monospace;">&nbsp;&nbsp;&nbsp;&nbsp; <span style="text-decoration: underline;">printf("Begin:: ")</span></span><br>
+      <span style="font-family: monospace;">&nbsp;&nbsp;&nbsp;&nbsp; _Flag = chg(xy);</span><br>
+      <span style="font-family: monospace;">&nbsp;&nbsp;&nbsp;&nbsp; return 0;</span><br>
+      <div style="margin-left: 40px;"><span style="font-family: monospace;"></span></div>
+      <span style="font-family: monospace;">
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }</span><span style="font-family: monospace;"></span><span style="font-family: monospace;"></span></dd>
+  </dl>
+  <dl>
+    <dt><span style="font-family: monospace;"></span>Label
+each&nbsp;underline error as either: lexical,
+syntactical, static semantic, dynamic semantic or logical error. (<a href="http://bingweb.binghamton.edu/~head/CS471/HW/lab1/lab1.c" target="_blank">Code)</a> To compile type:
+gcc -Wall -std=c99<br>
+      <br>
+</dt>
+  </dl>
+  <li>Compile <a href="http://bingweb.binghamton.edu/~head/CS471/HW/lab1/lab1_1EH.c"><span style="font-weight: bold;">lab1_1EH.c</span></a>
+using gcc with -S
+command line flag translate the C code into assembly. If you download
+the <a href="http://bingweb.binghamton.edu/~head/CS471/HW/lab1/Makefile" target="_blank">Makefile</a> into the
+current directory, you can use "make
+lab1p2ASM32" to create the assembly file.Explain what the assembly code
+generate does.<br>
+  <br>
+  </li><li>The purpose of this exercise is to compare imperative and
+functional style of coding and code and examine some C style
+issues.&nbsp; (<a target="_blank" href="http://bingweb.binghamton.edu/~head/CS471/HW/lab1.html">/lab1
+directory</a>&nbsp; contains this code&nbsp;, header file,
+readme and Makefile.&nbsp; )<br>
+  </li>
+  <ol style="list-style-type: lower-alpha;">
+    <li>The following imperative style C function computes "n" to
+the power, "pow". <br>
+      <br>
+    </li>
+    <ol>
+      <span style="font-family: monospace;">#include
+&lt;stdio.h&gt;</span><br>
+      <span style="font-family: monospace;">int powerI(int
+pow, int n) { <br>
+&nbsp; &nbsp;int acc,p;
+&nbsp;/* What does the comma between acc and p mean? */<br>
+      </span><span style="font-family: monospace;">&nbsp;
+&nbsp;for (acc=1,p=0; p &lt; pow; p++) { <br>
+&nbsp; &nbsp; &nbsp; &nbsp;acc = acc * n; <br>
+&nbsp; &nbsp; } <br>
+&nbsp;return acc; <br>
+} <br>
+      <br>
+      <br>
+      </span>
+    </ol>
+What does the&nbsp;comma "," between <span style="font-style: italic;">acc
+    </span> and <span style="font-style: italic;">&nbsp;p</span>&nbsp;<span style="font-style: italic;">mean</span>
+(what is it's purpose)?<br>
+    <br>
+    <li>Rewrite the <i>power</i> function using a functional style
+(i.e.
+eliminate variable declarations and loops and instead use recursive
+function calls and can be just one "if/else" statement). &nbsp;Name
+this function powerR(). You can add this code to <a target="_blank" href="http://bingweb.binghamton.edu/~head/CS471/HW/lab1/lab1_1.c">lab1_1.c</a>, add the prototype of powerR() to <a target="_blank" href="http://bingweb.binghamton.edu/~head/CS471/HW/lab1/lab1_1.h">lab1_1.h</a> and modify <a target="_blank" href="http://bingweb.binghamton.edu/~head/CS471/HW/lab1/lab1Driver.c">lab1Driver.c</a> by removing
+the comments to expose the test code for powerR().&nbsp; Modify the <a href="http://bingweb.binghamton.edu/~head/CS471/HW/lab1/Makefile">Makefile</a> to include a target named <i>lab1R</i>
+which will build an executable and run the code, after "make lab1R" is
+typed at the prompt. &nbsp;<a target="_blank" href="http://bingweb.binghamton.edu/~head/CS471/HW/lab1/fact.c">fact.c</a>
+contains an example of an imperative style implementation and recursive
+style implementation of factorial. <br>
+</li>
+    <li>What is the time complexity of the code in 3.a?</li>
+    <li>What is the time complexity of the code in 3.b?<br>
+    </li>
+
+    <br>
+    <br>
+  </ol>
+  <li> Page 37 exercise 1.5.&nbsp;
+In your local implementation of C, what is the limit on the size of
+integers? (You can use
+/usr/include/limits.h to figure out the range of values of type
+int.)&nbsp; What happens in the event of arithmetic overflow? <br>
+    <br>
+  </li>
+  <li> Examine syntactic design issues by
+writing simple Python scripts and Ruby scripts.</li>
+  <ol style="list-style-type: lower-alpha;">
+    <li>Rewrite the&nbsp;imperative style C code from
+problem 2 using
+Python(see <a target="_blank" href="http://bingweb.binghamton.edu/~head/CS471/HW/lab1/fact.py">fact.py</a> example).</li>
+    <li>Rewrite the imperative&nbsp;C code from problem 2
+using Ruby (see <a target="_blank" href="http://bingweb.binghamton.edu/~head/CS471/HW/lab1/fact.rb">fact.rb</a>
+example).</li>
+    <li>What is the purpose of "#!.." at the being of <a target="_blank" href="http://bingweb.binghamton.edu/~head/CS471/HW/lab1/fact.rb">fact.rb</a>.&nbsp; How do you make
+a file executable in unix/linux?<br>
+    </li>
+  </ol>
+  <br>
+  <ol>
+    <ol style="list-style-type: lower-alpha;">
+      <ol>
+        <ol style="list-style-type: lower-alpha;">
+          <ul>
+          </ul>
+        </ol>
+      </ol>
+    </ol>
+    <ol>
+    </ol>
+    <br>
+  </ol>
+</ol>
+
+</body></html>
