@@ -1,0 +1,4 @@
+a) int h@ter;
+b) int hatter int mad;
+c) i = 1; int i;
+d) char foo[10]; foo[200];

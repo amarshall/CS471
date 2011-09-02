@@ -1,0 +1,3 @@
+a) For C, the name and data type are static, as the data type must be declared when the name is, and cannot change over the lifetime of the variable. The value is dynamic and can be changed at runtime.
+b) For Python, the name only is static. The value is simply a pointer to the actual data, and the data type is associated with the actual data, not the value of the identifier.
+c) For Ruby, it is the same as Ruby.

@@ -1,0 +1,4 @@
+a) w x y z ^ ^ +
+b) w x y * z + +
+c) w x ^ y * z *
+d) w x / y * z /
