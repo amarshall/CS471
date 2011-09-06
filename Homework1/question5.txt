@@ -1,11 +1,11 @@
-The limit of an integer is 32 bits. When an overflow occurs, the value wraps around, e.g. adding one to the maximum value of an unsigned integer results in a value of 0, since the highest bit (and only 1 bit) cannot be stored.
+The limit of an integer is 32 bits. When an overflow occurs in C, the value wraps around, e.g. adding one to the maximum value of an unsigned integer results in a value of 0, since the highest bit (and only 1 bit) cannot be stored.
 
 Integer limits varying across machines can cause unexpected overflows when a machine has a lower integer limit than the development machine had, as a value that originally did not cause a problem could overflow.
 
-Java behaves the same way as C with regard to integer size and overflow.
+Java has a consistent integer size (32-bits) and overflow wraps around, as in C.
 Ada has an integer range of at least -32767 to 32767, and throws an exception upon overflow. [1][2]
 Pascal has an integer range of -32768 to 32767, and throws an exception upon overflow. [3][4]
-Python always (and seamlessly) uses the correct type for a number, avoiding any issues arising from overflow. [2]
+Python always (and seamlessly) uses the correct type for a number, eradicating any overflow issues. [2]
 
 [1] http://en.wikibooks.org/wiki/Ada_Programming/Type_System#Predefined_types
 [2] http://en.wikipedia.org/wiki/Integer_overflow#Security_ramifications
