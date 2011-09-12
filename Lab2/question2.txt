@@ -1,0 +1,32 @@
+a) S -> C
+   C -> E\n
+   E -> T+E | T
+   T -> F | F*T
+   F -> (E) | N
+   N -> DN | D
+   D -> 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9
+
+b) The "*" (multiplication) has higher precedence since it is farther down in the tree.
+
+c) 5 + (2 * 10)
+   5 + (2 + 10)
+
+d) 5 + 2 * 10
+   C
+   E
+   T+E
+   F+E
+   N+E
+   D+E
+   5+E
+   5+T
+   5+F*T
+   5+N*T
+   5+D*T
+   5+2*T
+   5+2*F
+   5+2*N
+   5+2*DN
+   5+2*1N
+   5+2*1D
+   5+2*10

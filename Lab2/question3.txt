@@ -1,0 +1,15 @@
+a) S -> C
+   C -> E\n
+   E -> T+E | T
+   T -> F*T | F
+   F -> G^F | G
+   G -> (E) | N
+   N -> DN | D
+   D -> 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9
+
+b) 10 + (20 + 30)
+   ((2 ^ 3) * 4) + 5
+   2 + (3 * (4 ^ 5))
+   2 ^ (3 ^ 2)
+
+c) They are all right associative

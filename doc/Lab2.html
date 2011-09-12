@@ -1,0 +1,232 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-us"><head>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <meta content="text/html; charset=UTF-8" http-equiv="content-type" /><title>Lab 2</title></head><body>
+<div style="text-align: center;">
+<h3>Programming Languages<br />Lab activity 2<br />
+</h3>
+</div>
+
+<ol>
+
+  <li>(0pts) <a href="lab2/Fig4_12R.c">Fig4_12R.c</a> is a program that will
+evaluate expressions.&nbsp; Using the make utility and this <span style="text-decoration: underline;"> </span><a href="lab2/Makefile">Makefile</a>'s
+target XQTR,
+compile and execute this program. e.g.<br />
+  </li>
+  <dl style="font-family: monospace; font-weight: bold;">
+    <dd>$ make XQTR<br />
+gcc -std=c99 -Wall -o Fig4_12 Fig4_12.c<br />
+./Fig4_12&nbsp;&nbsp;&nbsp; <br />
+2 + 4 * 3 + 1<br />
+The result is: 15<br />
+      <br />
+    </dd>
+  </dl>
+  <li>(10pts)The comment above each function in <a href="lab2/Fig4_12R.c">Fig4_12R.c</a>
+includes the rules in BNF.&nbsp; <br />
+  </li>
+  <ol style="list-style-type: lower-alpha;">
+    <li>On a piece
+of paper write (or in the text editor) the grammar rules down (You may
+consider numbers as terminal symbols for this part.) Notice that
+terminal symbols (operators) are 'match'ed and then used to calculate
+the result, terminal symbols (digits)&nbsp; are used to build the
+numbers and non-terminal symbols are function calls.&nbsp;&nbsp; <br />
+    </li>
+    <li>From the grammar can you determine the precedence of the
+operators, + and * ?&nbsp; Highest means tightest bound.&nbsp; <br />
+    </li>
+    <li>Parenthesize the following expressions according to the rules
+of the grammar: <br />
+    </li>
+    <ol>
+      <li>5 + 2 * 10</li>
+      <li>5 + 2 + 10</li>
+    </ol>
+    <li>Using the grammar rules write the left derivation for c.1.<br />
+<br />
+    </li>
+  </ol>
+  <li>(10pts)Add exponent, "^", operator to the grammar.&nbsp; <br />
+  </li>
+  <ol style="list-style-type: lower-alpha;">
+    <li>Exponent should have the highest precedents.&nbsp;&nbsp;
+It should have the same associativity as "*" and "+"<br />
+    </li>
+    <li>Parenthesize the following expressions according to the rules
+of the grammar: </li>
+    <ol style="font-family: monospace;">
+      <li>10 + 20 + 30</li>
+      <li>2 ^ 3 * 4 + 5<br />
+</li>
+      <li><span style="font-weight: bold;">2 + 3 * 4 ^ 5</span></li>
+      <li><span style="font-weight: bold;">2 ^ 3 ^ 2 <br />
+</span></li>
+
+    </ol>
+    <li>What is the associativity of "+", "*",&nbsp; and "^" ?<br />
+    </li>
+  </ol>
+  <dl>
+    <dd><br />
+      <br />
+    </dd>
+  </dl>
+  <li>(10pts)Modify <a href="lab2/Fig4_12R.c">Fig4_12R.c</a> by adding the code to include "^" operator.&nbsp; (Modify your
+makefile. You may use <a href="lab2/powI.c">powI.c</a> to computer "^") Submit only the changes to the code. Remember the
+general idea for converting a grammar to a code is<br />
+  </li>
+  <ul>
+    <li>&nbsp;non-terminals are
+function calls <br />
+    </li>
+    <li>"match" terminals</li>
+  </ul>
+  <dl>
+    <dt>eg.<br style="font-family: monospace;" />
+      <span style="font-family: monospace; font-weight: bold;">&nbsp;
+&nbsp;&nbsp; $ make XQTR<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><span style="font-family: monospace;">gcc -o Fig4_12R -std=c99
+-Wall Fig4_12R.c</span><br />
+      <span style="font-family: monospace; font-weight: bold;">
+&nbsp;&nbsp;&nbsp;&nbsp; ./Fig4_12R<br />
+&nbsp;&nbsp;&nbsp;&nbsp; </span><span style="font-family: monospace;">
+2 ^ 5 ^ 2</span><br style="font-family: monospace;" />
+      <span style="font-family: monospace;">&nbsp;&nbsp;&nbsp;&nbsp; The result is: 33554432</span><br />
+      <span style="font-family: monospace; font-weight: bold;"><span style="font-style: italic;">
+      <br />
+      </span></span></dt>
+  </dl>
+  <li>(0pts)<a href="lab2/Fig4_12.c">Fig4_12.c</a>
+is another program that evaluates expressions.&nbsp; Using the make
+utility and this <span style="text-decoration: underline;"> </span><a href="lab2/Makefile">Makefile</a>'s
+target XQT,
+compile and execute this program. e.g.</li>
+  <dl>
+    <dd><span style="font-family: monospace;">$ make XQT<br />
+./Fig4_12&nbsp;&nbsp;&nbsp; <br />
+2 + 4 * 3 + 1<br />
+The result is: 15</span></dd>
+    <dd><br />
+    </dd>
+  </dl>
+  <li>(10pts)The comment above each function in <a href="lab2/Fig4_12.c">Fig4_12.c</a>
+includes the grammar rules in BNF followed by the same rule using EBNF <br />
+  </li>
+  <ol style="list-style-type: lower-alpha;">
+    <li>On a piece of paper write BNF grammar rules down (You may
+consider numbers as terminal symbols for this part.) Notice that
+terminal symbols (operators) are 'match'ed and then used to calculate
+the result, terminal symbols (digits)&nbsp; are used to build the
+numbers and non-terminal symbols are function calls.&nbsp;&nbsp; <br />
+    </li>
+    <li>From the grammar can you determine the precedence of the
+operators, + and * ?&nbsp; Highest -&gt; tightest bound.&nbsp; <br />
+    </li>
+    <li>Parenthesize the following expressions according to the rules
+of the grammar: <br />
+    </li>
+    <ol>
+      <li>5 + 2 * 10</li>
+      <li>5 + 2 + 10</li>
+    </ol>
+    <li>Using the BNF rules, write the left derivation for the expressions
+in part c.<br />
+      <br />
+    </li>
+  </ol>
+  <li>(10pts) Add exponent, "^", operator to the grammar.&nbsp; <br />
+  </li>
+  <ol style="list-style-type: lower-alpha;">
+    <li>Exponent should have the highest precedence.&nbsp;&nbsp;
+It should have the same associativity as "*" and "+"<br />
+    </li>
+    <li>Parenthesize the following expressions according to the rules
+of the grammar: </li>
+    <ol style="font-family: monospace;">
+      
+      <li>10 + 20 + 30</li>
+      <li>2 ^ 3 * 4 + 5<br />
+      </li>
+      <li><span style="font-weight: bold;">2 + 3 * 4 ^ 5</span></li>
+      <li><span style="font-weight: bold;">2 ^ 3 ^ 2<br />
+</span></li>
+
+
+
+    </ol>
+    <li>What is the associativity of "+", "*",&nbsp; and "^" ?<br />
+      <br />
+    </li>
+  </ol>
+  <li>(10pts)Modify <a href="lab2/Fig4_12.c">Fig4_12.c</a>
+add the code to include "^" operator.&nbsp; (Modify your
+makefile. Submit only the changes to the code.)&nbsp; Remember the
+general idea for converting a grammar to code is<br />
+  </li>
+  <ul>
+    <ul>
+      <li>&nbsp;non-terminals are
+function calls <br />
+      </li>
+    </ul>
+    <ul>
+      <li>"match" terminals</li>
+    </ul>
+  </ul>
+  However for this grammar the above strategy will cause
+problems.&nbsp; Which type of recursive grammar rule causes the problem
+and why?&nbsp; Examining the code you see that EBNF suggests a
+solution, replace recursive calls with <span style="font-style: italic;">while loops</span>.&nbsp; Below is an
+example output.<br />
+
+  
+  <dl>
+    
+      
+    <div style="margin-left: 40px;"><span style="font-family: monospace;">$ make XQT</span><br style="font-family: monospace;" />
+      <span style="font-family: monospace;">gcc -o Fig4_12B -std=c99 -Wall
+Fig4_12.c</span><br style="font-family: monospace;" />
+      <span style="font-family: monospace;">./Fig4_12</span><br style="font-family: monospace;" /><span style="font-family: monospace;">2 ^ 5 ^ 2</span><br style="font-family: monospace;" />
+      <span style="font-family: monospace;">The result is: 1024</span><br />
+      </div>
+
+&nbsp; 
+    <li>(10pts)Download this&nbsp; <a href="lab2/RubyRELab.rb">Ruby
+code</a> and <a href="lab2/lab2Rb.c">lab2Rb.c</a> into
+the same directory. &nbsp; Execute the code.&nbsp; Notice a file is
+created, Name.txt.&nbsp; The data in the file was selected from&nbsp;
+      <a href="lab2/lab2Rb.c">lab2Rb.c</a> based on the regular expression literal,&nbsp;
+"/(int)\s(.*)\(.*\)\s/"&nbsp; . Modify the regular expression
+such that it captures all comments that are on ONE line and start at the beginning of the line.&nbsp; You
+should print out only the comments between the '/*' and the '*/'.&nbsp;
+The content of your output file should be the same as <a href="lab2/Rules.txt">Rules.txt</a> &nbsp; You might find these brief <a href="http://bingweb.binghamton.edu/%7Ehead/CS471/NOTES/GRAMMAR/RubyD.html">
+notes </a> helpful.&nbsp;&nbsp; Just submit your regular expression in
+the text file. Another helpful resource:&nbsp; <a href="http://www.regular-expressions.info/reference.html">Regular-Expressions.info</a><br />
+
+    
+
+
+    </li>
+  </dl>
+</ol>
+
+<br />
+
+<br />
+
+</body></html>
