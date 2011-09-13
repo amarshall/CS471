@@ -1,0 +1,1 @@
+Left associative grammers cause issues for recursion, and reuqire that the recursion be replaced with loops. Without this replacement, infinite recursion would occur.
