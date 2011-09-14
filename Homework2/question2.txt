@@ -1,0 +1,6 @@
+S -> if C then I E
+C -> cN
+B -> sN
+I -> begin S end | B
+E -> else I | ϵ
+N -> 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9
