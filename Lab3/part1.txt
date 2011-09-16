@@ -1,0 +1,43 @@
+CS 371 Lab #3
+@author J. Andrew Marshall <jmarsha6@binghamton.edu>
+
+
+1a) A relation specifies that the given objects are associated with one another, for which the input and output are related. A function is takes input, and outputs a unique value for that given input.
+
+1b) Every function is a relation since the input and output are permanently related.
+
+1c) Every relation is not a function because a relation need not a unique output value for each input value.
+
+4a) 
+   loves(aboy, mia)
+    │     │     │
+    │     └ These are both atoms.
+    └ This is the functor. It has arity two.
+
+   boxer(Butch)
+    │     └ This is a variable.
+    └ This is the functor. It has arity one.
+
+           ┌ These are both variables.
+           │          │
+   and(big(X), kahuna(X))
+    │   │       │
+    │   └ These are both complex terms of and(). They are each functors with arity one.
+    └ This is the functor. It has arity two.
+
+                ┌ This is a complex term of the first big(). It is a functor with arity one.
+                │   ┌ This is an atom.
+   hide(X, big(big(aBoy)))
+    │   │   └ This is a complex term of hide(). It is a functor with arity one.
+    │   └ This is a variable.
+    └ This is the functor. It has arity two.
+
+
+4b) likes(sam, Food) :- indian(Food), mild(Food).
+    likes(sam, Food) :- turkish(Food).
+    indian(curry).
+    indian(tandoori).
+    mild(tandoori).
+    turkish(tabuleh).
+
+    There are two rules, seven facts, six clauses, and four predicates. The head of the rules is "likes", the goal is "sam likes Food".
