@@ -40,4 +40,4 @@ CS 371 Lab #3
     mild(tandoori).
     turkish(tabuleh).
 
-    There are two rules, seven facts, six clauses, and four predicates. The head of the rules is "likes", the goal is "sam likes Food".
+    There are two rules, four facts, six clauses, and four predicates. The head of the rules is "likes(sam, Food)", the goals are "indian(Food), mild(Food)" and "turkish(Food)".
