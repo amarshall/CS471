@@ -59,7 +59,6 @@ grtThanLst([A|X], [B|Y]) :- A > B, grtThanLst(X, Y).
  *   true.
  */
 
-equivalentL1([], []).
 equivalentL1([], Y).
 equivalentL1([A|X], [B|Y]) :- A = B, equivalentL1(X, Y).
 
@@ -94,7 +93,7 @@ hasSubseq([A|X], [B|Y]) :- A = B, hasSubseq(X, Y).
  */
 
 init([_], []).
-init([A|X], [A|Y]) :- init(X, Y).
+init([E|X], [E|Y]) :- init(X, Y).
 
 
 /**
