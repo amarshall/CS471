@@ -37,6 +37,8 @@
  * 2 clauses
  */
 
+swap(leaf(X), leaf(X)).
+swap(tree(L, R), tree(A, B)) :- swap(R, A), swap(L, B).
 
 
 /**
@@ -53,6 +55,8 @@
  *   false.
  */
 
+equivT(leaf(X), leaf(X)).
+equivT(tree(XL, XR), tree(YL, YR)) :- equivT(XL, YL), equivT(XR, YR).
 
 
 /* 3: Given a list of predicates, applylist(L) succeeds only if
@@ -70,8 +74,10 @@
  *   false.
  *
  * 2 clauses
-  */
+ */
 
+applylist([]).
+applylist([H|L]) :- call(H), applylist(L).
 
 
 /**
@@ -95,7 +101,7 @@
  * (1 clause with multiple subgoals.)
  */
 
-solvSlow( [D,E,M,N,O,R,S,Y]) :-
+solvSlow([D,E,M,N,O,R,S,Y]) :-
   Lst = [S,E,N,D,M,O,R,Y],
   Digits = [0,1,2,3,4,5,6,7,8,9],
   assign_digits(Lst, Digits),
@@ -106,13 +112,27 @@ solvSlow( [D,E,M,N,O,R,S,Y]) :-
   10000*M + 1000*O + 100*N + 10*E + Y,
   write(Lst).
 
-
 assign_digits([], _List).
 assign_digits([D|Ds], List):- select(D, List, NewList), assign_digits(Ds, NewList).
 
+soln([D,E,M,N,O,R,S,Y]) :-
+  List = [S,E,N,D,M,O,R,Y],
+  Digits = [0,1,2,3,4,5,6,7,8,9],
+  assign_digits(List, Digits),
+  M = 1,
+  S > 7,
+  D < 9,
+  E < 9,
+  O = 0,
+  N is E + 1,
+  1000*S + 100*E + 10*N + D +
+  1000*M + 100*O + 10*R + E =:=
+  10000*M + 1000*O + 100*N + 10*E + Y,
+  write(List).
+
 
 /**
- * 5: Syntax-Directed Differentiation:  A motivating example illustrating the 
+ * 5: Syntax-Directed Differentiation:  A motivating example illustrating the
  * power of pattern matching in Prolog.
  * Consider the following rules for symbolic differentiation
  * (U, V are mathematical expressions, x is a variable):
@@ -142,17 +162,24 @@ assign_digits([D|Ds], List):- select(D, List, NewList), assign_digits(Ds, NewLis
  *   Result = 3* (1+ (2*x*1+x*2))+ (x+2*x*x)*0 .
  *
  * Keep in mind, though, that terms such as U+V are still trees with the
- * functor at the root, and that evaluation of such terms requires 
- * additional processing .  See next week's assignment.
+ * functor at the root, and that evaluation of such terms requires
+ * additional processing.  See next week's assignment.
  * 1 clause for each definition.
 */
 
-
+d(x, x, 1).
+d(C, x, 0) :- integer(C).
+d(C*x, x, C) :- integer(C).
+d(-U, x, -R) :- d(U, x, R).
+d(U + V, x, DU + DV) :- d(U, x, DU), d(V, x, DV).
+d(U - V, x, DU + DV) :- d(U, x, DU), d(-V, x, DV).
+d(U * V, x, DU * V + DV * U) :- d(U, x, DU), d(V, x, DV).
+d(U^C, x, C*U^(D) * DU) :- D is C - 1, d(U, x, DU).
 
 /**
  * 6: sumR(+N,?P).
  * Given a number, N, P is a list of the sum of the numbers from N
- * down to 1 such that first number in P is the sum of all the number from N to 1, 
+ * down to 1 such that first number in P is the sum of all the number from N to 1,
  * the second number in P the sum of all the numbers from N-1 down to 1, etc.
  * For example:
  *   ?- sumR(6,S).
@@ -161,11 +188,13 @@ assign_digits([D|Ds], List):- select(D, List, NewList), assign_digits(Ds, NewLis
  * 2 clauses
  */
 
+sumR(1, [1]).
+sumR(N, [A,B|S]) :- M is N - 1, sumR(M, [B|S]), A is N + B.
 
 
 /**
  * 7. sumL(N,P).
- * Is simular to sumR(+N,?P), except that sumuct totals 
+ * Is simular to sumR(+N,?P), except that sumuct totals
  * accumulate left to right. e.g. The first value in P will be N,
  * the second value will be N * N-1, etc.
  *   ?- sumL(6,S).
@@ -177,3 +206,8 @@ assign_digits([D|Ds], List):- select(D, List, NewList), assign_digits(Ds, NewLis
  *
  *  2 additional clauses.
  */
+
+
+sumL(_, 0, []).
+sumL(A, N, [B|L]) :- M is N - 1, B is A + N, sumL(B, M, L).
+sumL(N, L) :- sumL(0, N, L).
