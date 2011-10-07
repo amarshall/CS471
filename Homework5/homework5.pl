@@ -12,7 +12,7 @@
  *   expTree(Op,T).
  *
  * Write a Prolog program:
- *      eval(Tree,Value).
+ *   eval(Tree,Value).
  * which succeeds if Value is the result of computing the expressions
  * represented by an expression tree.  For example:
  *
@@ -28,6 +28,10 @@
  *
  * This can be done with only 4 clauses  -- if you understand lab 4.
 */
+
+eval(expTree(lit, V), V).
+eval(expTree(O, X), V) :- eval(X, A), U =.. [O, A], V is U.
+eval(expTree(O, X, Y), V) :- eval(X, A), eval(Y, B), U =.. [O, A, B], V is U.
 
 eTree1(expTree('+',
   expTree(lit, 5),
@@ -105,6 +109,9 @@ eTree4(expTree(float,
  * This can be done with 3 clauses. It is not too hard.
  */
 
+countLit(expTree(lit, _), 1).
+countLit(expTree(_, X), N) :- countLit(X, N).
+countLit(expTree(_, X, Y), N) :- countLit(X, N1), countLit(Y, N2), N is N1 + N2.
 
 
 /**
@@ -148,13 +155,14 @@ d(U^N, x, N*U^N1*DU) :- integer(N), N1 is N-1, d(U, x, DU).
  * Follow the example covered in class on Wed, last week.
  */
 
-
+evaluate(R, V, Xval) :- member(Xval, x:X).
+% :(
 
 /**
  * 4: (Very Easy) Write a predicate, value(Coin, Num, Amt), where Coin is the name,
  * Num is how many coins and Amt is the total value,
  * (the value of the coin (in pennies) times the number of coins. )
- * You should use the facts created above as
+ * You should use the facts created as
  * as subgoal to find the value.
  *
  *   ?- value(quarter,5, Amt).
@@ -171,6 +179,8 @@ coin(quarter, 25).
 coin(dime,10).
 coin(nickel,5).
 coin(penny,1).
+
+value(C, N, A) :- coin(C, V), A is V * N.
 
 
 /**
@@ -211,6 +221,8 @@ coin(penny,1).
  *    3) What happens if the order of the "coin" facts change?
  */
 
+change(0, []).
+change(A, [(Cname, Cnum)|L]) :- coin(Cname, Cval), A >= Cval, Cnum is floor(A / Cval), B is A mod Cval, change(B, L).
 
 
 /**
@@ -227,6 +239,10 @@ coin(penny,1).
  *  NA = 15 .
  */
 
+numOfAtoms([], 0) :- !.
+numOfAtoms(X, 1) :- atom(X).
+numOfAtoms(X, 1) :- number(X).
+numOfAtoms([H|T], N) :- numOfAtoms(H, X), numOfAtoms(T, Y), N is X + Y.
 
 
 /**
@@ -238,9 +254,24 @@ coin(penny,1).
  *   S = [1, 4, 5, 7, 53] .
  */
 
+insertionSort([], S, S).
+insertionSort([H|T], A1, S) :- insert(H, A1, A2), insertionSort(T, A2, S).
+insertionSort(L, S) :- insertionSort(L, [], S).
+
+insert(E, [], [E]).
+insert(E, [H|T], [H|S]) :- E > H, insert(E, T, S).
+insert(E, [H|T], [E,H|T]) :- E =< H.
 
 
 /**
  * 8. Do exercise 11.15 page 572.  Follow the hint in the text book.
  * This can be done with THREE additional predicates.
  */
+
+quickSort([], []).
+quickSort([A|L1], L2) :- partition(A, L1, P1, S1, N), N > 15, quickSort(P1, P2), quickSort(S1, S2), append(P2, [A|S2], L2).
+quickSort([A|L1], L2) :- insertionSort(L1, L2).
+
+partition(A, [], [], [], 0).
+partition(A, [H|T], [H|P], S, N) :- A >= H, partition(A, T, P, S, N1), N is N1 + 1.
+partition(A, [H|T], P, [H|S], N) :- A =< H, partition(A, T, P, S, N1), N is N1 + 1.
