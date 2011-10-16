@@ -1,0 +1,64 @@
+1) Choose: Ruby
+ - Number of built-in functions: when the language is designed.
+ - Variable declaration that corresponds to a particular variable reference: runtime.
+ - Max. length for a constant string: there is no such concept.
+ - Referencing env. for a subroutine that is passed as a parameter: runtime.
+ - Address of a particular library routine: runtime.
+ - Total amount of space occupied by a program code and data: runtime (since it can vary based on interpreter and garbage collector).
+
+2) 
+  a)  +---
+      | 4: Return Address
+      +---
+      | 8: `pow` argument
+      +---
+      | 12: `base` argument
+      +---
+  b) The program stack grows downward (toward lower addresses) (since we subtract from %esp in order to make more room on the stack).
+  c) [See attached "question2.s"]
+
+3)
+ - Elaine Weyuker does significant research in software engineering. Such as software testing practices and metrics that help improve software. She contributes to the growth of women in the ACM.
+ - Grace Hopper is one of the early pioneers in computer science, having worked on the famous UNIVAC. She developed the first compiler and was an early advocate of high-level languages. The term "bug" was also popularized by Hopper. For her incredible achievements, there is a U.S. Naval ship named after her (she was a lifelong naval officer).
+ - Grete Hermann was a German mathematician whose landmark doctoral thesis on abstract algebra marked the beginning of algorithms and algorithmic complexity. She was also part of the anti-Nazi underground during WWII.
+ - Frances E. Allen was one of the forerunners of the idea of program analysis and optimization during compilation. Much of the optimizations in modern compilers owe themselves to her research. She was the first woman to become an IBM fellow.
+ - Barbara Jane Liskov has made important contributions to the foundations of object-oriented programming. This includes the well-known Liskov substitution principle. Through her creation of the Argus language she helped make progress in the field of distributed programming as well.
+ - Erna Schneider Hoover is famous for created a system for prioritizing computer processes, first put to use in telephone switches at Bell Labs. For this she was granted one of the first software patents.
+ - Adele Goldberg was one of the developers of Smalltalk-80. Along with Alan Kay, she was on of the pioneers of the precursor to design patterns, design templates.
+
+4) Neither strategy is more effective than the other at reducing external fragmentation, as best fit can result in mostly very small blocks left over, and first fit can result in inadequate use of free space. Both can end up with more or less fragmentation for average use cases. External fragmentation depends on how often blocks of memory are allocated and subsequently freed and grown, and the size of the blocks.
+
+5) The cost of allocation is O(n), but can be increased by keeping separate lists for different block sizes, this reduces the number of blocks searched to only those with enough space to fit the requested block size. While this is still linear, the coefficient is smaller.
+
+6)
+ - The lifetime is the duration between the bindings creation and destruction, while its visibility is when it is able to be accessed.
+ - The scope of a name-to-object binding is the areas of the program code within which the binding is visible.
+ - The referencing environment is the scope from within which a function was called, as the function may need access to non-local variables that exist within the calling scope, but not within the scope within which the function was defined.
+ - A declaration binds a name to its type (in languages that require the type to be declared explicitly), and the definition binds the name to a value. This distinction allows declaring the existence of a variable without needing to assign it a value.
+ -  // In C
+    void foo() {
+      static int bar = 42;  
+    }
+    // bar is live but not in scope!
+
+    // In C++ & Java
+    class Foo {
+      int bar;
+    }
+    Foo foo = new Foo();
+    // bar is live but not in scope!
+
+7) The `restrict` keyword in C (starting in C99), indicates that a pointer is the only pointer which points to its memory location. It allows for optimizations during certain pointer operations. The compiler does not enforce this, resulting in undefined behavior when the `restrict` keyword is improperly used. This behavior is the default in Fortran, allowing the compiled code to run faster.
+
+8)
+  a) Being used to Java, Brad usually haves the convenience of a garbage collector to take care of memory management for him, and now, faced with having to manage memory himself, fails to deallocate unused memory. The many times he calls `insert()` cause significant amounts of memory to be allocated, some of which the references to are lost but the memory never freed. This causes a memory leak that eventually consumes all available memory.
+  b) When `delete_list()` is called, it also deletes all the data "within" each node, but since the new list's nodes point to the same memory location for their data as the original list. This can be resolved by either having the list's desctuctor not deallocate the data they point to, or copying the data when a new node is created instead of simply referencing the original location.
+
+9) Static scope: 1 1 1 1. Dynamic scope: 1 1 2 1
+
+10) [see included file "question10.pl"]. The first time the inner subroutine is called, $lex is bound to the value at that time. During subsequent calls to the outer loop, since the inner subroutine has already been defined, and thus its $lex already bound, it is not rebound to the new $lex in the outer loop. This causes the inner loop to (possibly unexpectedly) reuse the same value for each run.
+
+11)
+  a) Using static scoping, the program prints 11.
+  b) Using dynamic scoping with deep binding, the program prints 4 because `add()` uses the `x` & `y` as they were bound in `first()`, when the argument was called (i.e x=1 & y=3).
+  c) Using dynamic scoping with shallow binding, the program prints 1 because `add()` uses the `x` & `y` as they are bound when the procedure is called in `second()` (i.e. `x` is the integer defined within `second()`, not the global `x`).
