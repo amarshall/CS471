@@ -1,0 +1,39 @@
+1) Inline functions are the fastest, with the speed of a macro being mostly equivalent in most places. Macros can result in a slightly larger binary than an inline function, but are mostly comparable. Regular functions are always slower and always use less space (assuming the code is called in more than one location).
+
+2) #define HELLO(x) int y = (x) + y * (x);
+   inline int hello(int x) { return x + y * x; }
+   
+   The macro will run slower if the parameter is an expression (e.g. 2 + 4), as it will have to evaluate it multiple times, the inline function will only evaluate it once (when it is called).
+
+3) Structurally equivalent: w, x, y, & z. Strict name equivalence: x & y, w & z. Actual C equivalence: w, x, y, & z.
+
+4) dp = vp; ip = vp; dp = ip; ip = vp; (You can set a void type to anything but cannot set "anything" to anything)
+   ip = static_cast<int*>(dp); (You can only cast "compatible" types)
+
+5) int x;
+   double y;         // C++   Java
+   x = pow(2,3);     // 1     1
+   y = pow(2,3);     // 1     1
+   x = pow(2,3.2);   // 3     Error
+   y = pow(2,3.2);   // 3     3
+   x = pow(2.1,3);   // Error Error
+   y = pow(2.1,3);   // Error 2
+   x = pow(2.1,3.2); // 2     Error
+   y = pow(2.1,3.2); // 2     2
+
+6) 1296
+
+7) double *a[n]; // A n-size array "a" of pointers to doubles
+   double (*b)[n]; // A pointer to n-size array "b" of doubles
+   double (*c[n])(); // A n-size array "c" of pointers to functions that return doubles.
+   double (*d())[n] ; // A n-size array "d" of pointers to functions that return doubles.
+
+8) A function pointer "foo" that returns a (pointer to a function that returns a double and takes an argument list of doubles) and takes (pointer to function that returns a double and takes a double & double array) and a double.
+
+9) The variable "k" needs to be 5 for the code to output as specified. The outputs are 8, 20, 5, 100, 180, 8.
+   i + 2 = 0 + 2*sizeof(int) = 0 + 2*4 = 8
+   i + k = 0 + k*sizeof(int) = 0 + 5*4 = 20
+   k = 5
+   a + k = 0 + k*sizeof(A) = 0 + 5*20 = 100
+   &(a[9]) = &(*(a+9)) = a + 9*sizeof(A) = 0 + 9*20 = 180
+   &(a[9]) - (a+1) = (a + 9*sizeof(A)) - (a + sizeof(A)) = 8  (since subtracting two array pointers yields the distance between them).
