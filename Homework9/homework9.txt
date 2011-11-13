@@ -1,0 +1,37 @@
+@author J. Andrew Marshall <jmarsha6@binghamton.edu>
+
+1) a: 16
+   b: 16
+   c: squaref(2+2) == 16
+      SQUARE(2+2) == 2+2*2+2 == 10
+
+2) First, the given code either does not compile, prints unknown values, prints garbage, or prints nothing, since the variable "A" is being assigned to but "a" is being printed. Assuming this was unintentional and those are both the same variable, the answers are below:
+  a: Pass by value means the function has no effect. Prints:
+     1, 2, 1, 0
+     1, 2, 1, 0
+  b: Pass by reference appears to have no effect simply because it is swapping identical values. Prints:
+     1, 2, 1, 0
+     1, 2, 1, 0
+  c: 1, 2, 1, 0
+     1, 2, 1, 0
+  d&e: i = i + a[i]; // i = 1 + a[1] = 1 + 1 = 2
+     a[i] = i - a[i]; // a[2] = 2 - a[2] = 2 - 0 = 2
+     i = i - a[i]; // i = 2 - a[2] = 2 - 2 = 0
+     Prints: 0, 2, 1, 2
+
+     a[1] = a[1] + a[i] = 1 + a[0] = 1 + 2 = 3
+     a[i] = a[0] = a[1] - a[0] = 3 - 2 = 1
+     a[1] = a[1] - a[i] = a[1] = a[0] = 3 - 1 = 2
+     Prints: 0, 2, 2, 2
+
+3) See "Queue.java".
+
+4) Because then the elements that the pointers in the list being passed are different sizes, but the function does not know this, and this can result in memory errors.
+
+5) See files for comments. Private methods cannot be dynamically dispatched, so it is called on the static type. Everything else is called on the dynamic type, if it is overridden there, otherwise calls the implementation in the static type.
+
+6) See "question6.cpp"
+
+7) Final methods in Java cannot be redefined in subclasses, whereas in C++ a non-virtual method may still have a method of the same name defined in a subclass, but it will not be dynamically dispatched since the virtual keyword to hint that it may be overridden does not exist.
+
+8) Because having a static type of an abstract class would require that it be instantiate-able, which it is not, but a pointer to an abstract class can be a pointer to an instance of a non-abstract subclass. The same applies in Java, except pointers do not exist (visibly), so an abstract class can be a static type for a variable, but obviously never the dynamic type since you cannot instantiate an abstract class.
