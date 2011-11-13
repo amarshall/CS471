@@ -2,10 +2,28 @@ class Tree
   attr_reader :parent, :left, :right
   attr_accessor :value
 
-  def initialize value = nil, left = nil, right = nil
-    @value = value
-    @left = left
-    @right = right
+  def initialize options = nil
+    if options.kind_of? Array
+      list = options
+      case list.length
+      when 0 then raise ArgumentError.new "Array cannot be empty"
+      when 1
+        @value = list[0]
+        @left = nil
+        @right = nil
+      else
+        @value = list[list.length / 2]
+        @left = Tree.new(list[0..(list.length / 2 - 1)])
+        @right = Tree.new(list[(list.length / 2)..-1])
+      end
+    elsif options.kind_of?(Hash) || options.nil?
+      options = { value: nil, left: nil, right: nil }.merge(options || {})
+      @value = options[:value]
+      @left = options[:left]
+      @right = options[:right]
+    else
+      raise ArgumentError.new "Must be array, hash, or nil."
+    end
   end
 
   def left= tree
@@ -59,7 +77,7 @@ class Tree
         (1..num).each do |root_position|
           gen.call(root_position - 1) do |left|
             gen.call(num - root_position) do |right|
-              block.call Tree.new nil, left, right
+              block.call Tree.new(left: left, right: right)
             end
           end
         end
