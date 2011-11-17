@@ -1,0 +1,198 @@
+/*
+        CS471 - Programming Languages
+        Assignment #<number> due: <DATE>
+        Author: <LastName>, <FirstName> (<EMail>)
+        Date: <DATE>
+ */
+
+/* Purpose:
+   * to reenforce search order.
+   * to reenforce recursive programming
+   * to reenforce the use of the list data structure in Prolog
+   
+	1) For some of the problems below you need only generate a correct
+      result from the query without requesting alternative results. 
+      You may use cuts but it is not required.
+ */
+ 
+
+/* 1:  : (From Learn Prolog NOW! exercise 3.3)
+ * Binary trees are trees where all internal nodes have exactly two
+ * children. The smallest binary trees consist of only one leaf node. We
+ * will represent leaf nodes as leaf(Label). For instance, leaf(3) and
+ * leaf(7) are leaf nodes, and therefore small binary trees. Given two
+ * binary trees B1 and B2 we can combine them into one binary tree using
+ * the predicate tree: tree(B1,B2). So, from the leaves leaf(1) and
+ * leaf(2) we can build the binary tree tree(leaf(1), leaf(2)). And from
+ * the binary trees tree(leaf(1), leaf(2)) and leaf(4) we can build the
+ * binary tree tree(tree(leaf(1), leaf(2)), leaf(4)).
+
+ * Now, define a predicate swap/2, which produces a mirror image of the
+ * binary tree that is its first argument. For example:
+
+    ?- swap(tree(tree(leaf(1), leaf(2)), leaf(4)),T).
+    T = tree(leaf(4), tree(leaf(2), leaf(1))).
+    yes
+
+  2 clauses
+**/
+
+
+
+/* 2: Given a tree, define a predicate equivT(Tree,ETree), that success if
+      Tree and ETree have the same structure and all the corresponding leaves
+      have equivalent values. Use the tree definition from in problem 1. 
+      (2 clauses)
+
+     ?- equivT(tree(tree(leaf(1), leaf(2)),leaf(3)), tree(leaf(1), leaf(2))).
+     false.
+     ?- equivT(tree(tree(leaf(1), leaf(2)),leaf(3)), tree(tree(leaf(1), leaf(2)),leaf(3))).
+     true.
+     ?- equivT(tree(tree(leaf(1), leaf(2)),leaf(3)), tree(tree(leaf(1), leaf(2)),leaf(10))).
+     false.
+
+      */
+
+
+     
+
+/* 3: Given a list of predicates, applylist(L) succeeds only if
+      each of the predicates in the list succeeds. Note: the scope
+      of variables names is the entire list. You can apply each predicate
+      at the prompt to see how they work.  Make up your own. (2 lines)
+
+   i.e.
+      ?- applylist([=(A,5),is(B,+(4,5)),C is max(5,2),A=C]).
+      A = 5,
+      B = 9,
+      C = 5.
+      
+      ?- applylist([=(A,5),is(B,+(4,5)),C is max(9,2),A=C]).
+      false.
+      
+   2 clauses 
+  */
+
+
+
+
+/** 4:  "Send more money" is a well-known puzzle. Each of the letters
+    D,E,M,N,O,R,S and Y represents a different digit. Moreover, when each
+    letter is mapped to its corresponding digit the equation SEND + MORE =
+    MONEY holds. Below is a very naive implementation. Since there are 
+    8 letters to be solved, it simply explore the 10*9*...*3 mappings of 
+    letters to digits. 
+    A little insight can simplify things. Clearly, SEND < 9999 and 
+    MORE < 9999. Thus MONEY < 19998 and hence M = 1. 
+    Now we have SEND + 1ORE = 1ONEY. Again SEND < 9999 
+     and now 1ORE < 1999 so 1ONEY < 11998. Since M is already bound to 1, 
+     O must be bound to 0. A little more thought shows that S must be
+     bound to 8 or 9, and that N = E + 1. Using these insights to reduce
+     the number of solutions that must be explored, write a Prolog
+     predicate soln([D,E,M,N,O,R,S,Y]) that solves this puzzle by binding
+     the correct digits to each of the variables in the list. (Modified 
+     from http://www.cs.wisc.edu/~fischer/)
+    (1 clause with multiple subgoals.)
+*/
+
+solvSlow( [D,E,M,N,O,R,S,Y]) :-
+	Lst = [S,E,N,D,M,O,R,Y],
+	Digits = [0,1,2,3,4,5,6,7,8,9],
+	assign_digits(Lst, Digits),
+	M > 0, 
+	S > 0,
+	1000*S + 100*E + 10*N + D +
+	1000*M + 100*O + 10*R + E =:=
+	10000*M + 1000*O + 100*N + 10*E + Y,
+	write(Lst).
+
+
+assign_digits([], _List).
+assign_digits([D|Ds], List):-
+        select(D, List, NewList),
+        assign_digits(Ds, NewList).
+        
+
+       
+
+/* 5:  Syntax-Directed Differentiation:  A motivating example illustrating the 
+         power of pattern matching in Prolog.
+         Consider the following rules for symbolic differentiation
+         (U, V are mathematical expressions, x is a variable):
+
+        dx/dx = 1
+        d(C)/x = 0.
+        d(Cx)/x = C               (C is a constant)
+        d(-U)/dx = -(dU/dx)
+        d(U+V)/dx = dU/dx + dV/dx
+        d(U-V)/dx = dU/dx - dV/dx
+        d(U*V)/dx = U*(dV/dx) + V*(dU/dx)
+        d(U^n)/dx = nU^(n-1)*(dU/dx)
+
+        These rules can easily be translated into Prolog, for instance,
+        the second rule can be defined as
+                   d(C,x,0):-integer(C).
+          and the fifth rule can be defined as
+                   d(U+ V ,x, DU+ DV):-d(U,x,DU),d(V,x,DV).
+
+         Write the remaining rules. Here is a test query:
+
+            ?- d(3*(x +2*x*x),x,Result).
+            Result = 3* (1+ (2*x*1+x*2))+ (x+2*x*x)*0 ;
+            Result = 3* (1+ (2*x*1+x* (2*1+x*0)))+ (x+2*x*x)*0 ;
+            false.
+
+            ?- d(3*(x +2*x*x),x,Result).
+            Result = 3* (1+ (2*x*1+x*2))+ (x+2*x*x)*0 .
+
+
+        Keep in mind, though, that terms such as U+V are still trees with the
+        functor at the root, and that evaluation of such terms requires 
+        additional processing .  See next week's assignment.
+        1 clause for each definition.
+*/
+
+%6. sumR(+N,?P).
+/* Given a number, N, P is a list of the sum of the numbers from N
+   down to 1 such that first number in P is the sum of all the number from N to 1, 
+   the second number in P the sum of all the numbers from N-1 down to 1
+    etc.
+   For example:
+     
+     ?- sumR(6,S).
+     S = [21, 15, 10, 6, 3, 1] .
+
+
+   2 clauses
+*/ 
+
+
+
+%7. sumL(N,P).  
+/* Is simular to sumR(+N,?P), except that sumuct totals 
+   accumulate left to right. e.g. The first value in P will be N,
+   the second value will be N + N-1, etc.
+
+     ?- sumL(6,S).
+     S = [6, 11, 15, 18, 20, 21] .
+
+
+    It would be helpful to overload sumL/2 and include the following
+    clause:
+    
+       sumL(N,Lst):-sumL(N,N,Lst).
+       
+    2 additional clauses.
+
+*/
+
+
+
+
+
+
+
+
+
+
+

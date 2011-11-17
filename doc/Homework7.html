@@ -1,0 +1,440 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head><title>Scott's Chap 6: Control Flow</title>
+
+
+  
+
+  
+  
+  <meta http-equiv="content-type" content="text/html; charset=ISO-8859-1">
+
+  
+  <meta name="author" content="E Head"></head><body>
+<h3>Homework Assignment 7</h3>Due:: Tues. Oct 25 @ end of day.<br>
+
+
+May be done in teams of 2. Everyone must join a group of 1 or 2
+members.<br>
+
+&nbsp; <br>
+
+Read: Ch 6: &nbsp; p
+219-270 <br>
+Review Chap 3.<br>
+
+<span style="font-style: italic;"><span style="font-weight: bold;"></span></span>
+<br>
+
+<ol>
+
+
+  <li>Compile and run in gcc&nbsp; the following C
+code on a Linux&nbsp; or Windows platform: </li>
+  <dl>
+    <dd><span style="font-family: monospace;">int
+loop() {</span><br style="font-family: monospace;">
+      <span style="font-family: monospace;">&nbsp;&nbsp;&nbsp;
+int
+x[128]; </span><br style="font-family: monospace;">
+      <span style="font-family: monospace;">&nbsp;&nbsp;&nbsp;
+int i=0; </span><br style="font-family: monospace;">
+      <span style="font-family: monospace;">&nbsp;&nbsp;&nbsp;
+while
+(i++ &lt;128) { </span><br style="font-family: monospace;">
+      <span style="font-family: monospace;">&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; x[i] = 0; </span><br style="font-family: monospace;">
+      <span style="font-family: monospace;">&nbsp;&nbsp;&nbsp;
+} </span><br style="font-family: monospace;">
+      <span style="font-family: monospace;">} </span><br style="font-family: monospace;">
+      <span style="font-family: monospace;">int main
+() { </span><br style="font-family: monospace;">
+      <span style="font-family: monospace;">&nbsp;&nbsp;&nbsp;
+printf("\nCalling loop --&gt;&gt;\n"); </span><br style="font-family: monospace;">
+      <span style="font-family: monospace;">&nbsp;&nbsp;&nbsp;
+loop(); </span><br style="font-family: monospace;">
+      <span style="font-family: monospace;">}</span></dd>
+    <dd><br>
+    </dd>
+Below are the
+commands to
+compile and
+run the above code on Linux : <br>
+    <ol style="margin-left: 40px;">
+      <b><tt>gcc -std=iso9899:1999 <a href="http://bingweb.binghamton.edu/%7Ehead/CS471/HW/hw7.c">hw7.c</a>
+-o hw7.exe</tt></b><br>
+      <b><tt>hw7.exe</tt></b>
+      <p><b><font color="#3333ff">if
+hw7.exe
+does NOT work then type:</font></b> <br>
+      <b><tt><font color="#3333ff">./hw7.exe</font></tt></b>
+&nbsp;</p>
+    </ol>
+&nbsp;&nbsp; Do not use a debugger.
+    <ol>
+      <ol type="A">
+      </ol>
+    </ol>
+    <ol>
+      <ol type="A">
+      </ol>
+    </ol>
+    <ol start="1" style="margin-left: 40px; list-style-type: lower-alpha;">
+      
+      <li>What happens when you run this code?</li>
+      <li>(If you can't figure it out - Use '-S'
+option to examine the
+assembly code to help you understand what is going on.)<br>
+Depending on the target machine and the compiler,
+this
+code
+will execute
+differently.&nbsp; Sometimes this code goes into an infinite loop,
+sometimes
+this code terminates, sometimes this code cause a segmentation
+error.&nbsp;
+Can you explain why this code does not behavior consistently?&nbsp;
+Think
+in terms of the AR and the runtime stack.</li>
+
+      <ol type="A">
+      </ol>
+    </ol>
+    <br>
+    <li>Exercise 3.15 page 169<br>
+      <br>
+</li>
+  </dl>
+  <li>Continuation of problem 2 from assignment 6.&nbsp; Make
+sure you are using gcc version 4.02 or above.<br>
+Recompile <a href="powerR.c">powerR.c</a> with -O2 optimization switch
+(gcc power2.c -O2 -S -std=iso9899:1999).<br>
+  </li>
+  <dd>
+      Compare
+the assembly file created using optimization switch with the file
+created without optimization(in last weeks homework). &nbsp;Pay
+attention to how power's
+recursion is "implemented". &nbsp;How are they different?<br>
+    <br>
+<ol style="list-style-type: upper-alpha;">
+    </ol>
+    <ol style="list-style-type: upper-alpha;">
+      </ol>
+  </dd>
+  
+  <dl>
+
+    <li>What is the value of&nbsp; <span style="font-style: italic;">i</span>
+after the following is executed?&nbsp;&nbsp; What does this tell you
+about the semantics of -=?<br>
+      <pre wrap=""><span style="font-weight: bold;"> double d = 10;</span><br style="font-weight: bold;"><span style="font-weight: bold;"> int i = 4;</span><br style="font-weight: bold;"><span style="font-weight: bold;"> i -= d;</span><br></pre>
+      <ol style="list-style-type: lower-alpha;">
+        <li>In Java?</li>
+        <li>In C ?</li>
+      </ol>
+      <pre wrap=""><span style="font-weight: bold;">double d = 10;</span><br style="font-weight: bold;"><span style="font-weight: bold;">int i = 4;</span><br style="font-weight: bold;"><span style="font-weight: bold;">i = i - d;</span><br></pre>
+      <ol style="list-style-type: lower-alpha;">
+        <li>In Java ?</li>
+        <li>In C ?<br>
+          <br>
+</li>
+      </ol>
+    </li>
+    
+  </dl>
+  <li>The language C distinguishes between the <span style="font-style: italic;">declaration </span>and <span style="font-style: italic;">definition.</span></li>
+  <ol style="list-style-type: upper-alpha;">
+    <li>What is the difference between declaration and
+definition?</li>
+    <li>Assume these statements are all outside of functions.
+Which of the following are declarations only and which are definitions:</li>
+    <ol style="list-style-type: lower-alpha;">
+      <li>float * interest ;</li>
+      <li>float interest;</li>
+      <li>struct node;</li>
+      <li>extern float balance = 100.00;</li>
+      <li>extern float accountNum;</li>
+      <li>struct * node fun(int i);</li>
+      <li>static double costs[10];<br>
+        <br>
+      </li>
+    </ol>
+  </ol>
+  <dl>
+    <li>Evaluate following program fragment in C:<br>
+      <div style="margin-left: 40px;"><span style="font-family: monospace; font-weight: bold;"></span><span style="font-family: monospace; font-weight: bold;"></span><span style="font-family: monospace; font-weight: bold;"></span><span style="font-family: monospace; font-weight: bold;"></span><span style="font-family: monospace; font-weight: bold;"></span><span style="font-family: monospace; font-weight: bold;"></span><span style="font-family: monospace; font-weight: bold;">int a =
+0;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>
+int b = (a++ &amp;&amp; ++a) &gt; a++;<br>
+printf( "%d %d", a, b ); <br>
+      </span></div>
+In the table below show each evaluation step&nbsp; and include the
+value of a and b. &nbsp;Finally, display the output. Remember in
+Java,
+C and C++, <span style="font-weight: bold;">&amp;&amp;</span>
+is a <a href="http://en.wikipedia.org/wiki/Lazy_evaluation#Minimal_evaluation">short
+circuit</a> operator which is always evaluated left to right. <span style="color: rgb(204, 0, 0);">Assume all side effects occur
+immediately.</span><br>
+      <br>
+a. Assume that, wherever there is an option, operands are evaluated
+left to right:<br>
+      <br>
+      <table style="text-align: left; width: 768px; height: 325px;" border="1" cellpadding="2" cellspacing="2">
+        <tbody>
+          <tr>
+            <td><span style="font-family: monospace; font-weight: bold;"></span><span style="font-family: monospace; font-weight: bold;"></span><span style="font-family: monospace; font-weight: bold;">int b = (a++
+&amp;&amp; ++a) &gt; a++;</span><span style="font-family: monospace; font-weight: bold;"></span><span style="font-family: monospace; font-weight: bold;"></span></td>
+            <td style="font-family: monospace;"><span style="font-weight: bold;">a=0</span>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+&nbsp; &nbsp; &nbsp; b=?&nbsp; &nbsp; &nbsp;
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+&nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp;
+&nbsp; &nbsp; </td>
+          </tr>
+          <tr>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+          </tr>
+          <tr>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+          </tr>
+          <tr>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+          </tr>
+          <tr>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+          </tr>
+          <tr>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+          </tr>
+          <tr>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+          </tr>
+          <tr>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+          </tr>
+          <tr>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+          </tr>
+        </tbody>
+      </table>
+      <br>
+      <br>
+b. Assume that, wherever there is an option, operands are evaluated
+right to left:<br>
+      <br>
+      <table style="text-align: left; width: 768px; height: 325px;" border="1" cellpadding="2" cellspacing="2">
+        <tbody>
+          <tr>
+            <td style="font-family: monospace;"><span style="font-weight: bold;"></span><span style="font-weight: bold;"></span><span style="font-weight: bold;"></span><span style="font-weight: bold;">int
+b = (a++ &amp;&amp; ++a) &gt; a++;</span></td>
+            <td style="font-family: monospace;"><span style="font-weight: bold;">a=0</span>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+&nbsp; &nbsp; &nbsp; b=?&nbsp; &nbsp; &nbsp;
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+&nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp;
+&nbsp; &nbsp; </td>
+          </tr>
+          <tr>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+          </tr>
+          <tr>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+          </tr>
+          <tr>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+          </tr>
+          <tr>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+          </tr>
+          <tr>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+          </tr>
+          <tr>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+          </tr>
+          <tr>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+          </tr>
+          <tr>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+          </tr>
+        </tbody>
+      </table>
+      <br>
+      <br>
+    </li>
+
+    <li>In Ruby everything is an object including numbers and
+nil. &nbsp;Ruby does not use "for" loops much but instead uses
+iterators and code blocks.&nbsp; Below is a script to calculate the
+product of 1 to 5. In an "irb window" type the following 3 lines :</li>
+    <dl>
+      <dd><span style="font-family: monospace;">prod = 1<br>
+1.upto(5){|n| prod = prod *n}<br>
+puts prod<br>
+        </span></dd>
+      <dt>Below is a script build a list of numbers from 1 to 5
+and print out the list:</dt>
+      <dd><span style="font-family: monospace;">lst =
+[ 1 ]<br>
+1.upto(5){|n| lst[n]=n}<br>
+print lst<br>
+print "\n"<br>
+puts lst&nbsp;<br>
+        </span></dd>
+      <dt>Write a script using a number object 1 to build a list
+where the first element is 1 and the next elements are the product of
+n!. &nbsp;The output should be</dt>
+      <dt><span style="font-family: monospace;">&nbsp;
+&nbsp; &nbsp; puts lst</span><br style="font-family: monospace;">
+        <span style="font-family: monospace;">&nbsp;
+&nbsp;&nbsp;&nbsp; 1<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 1<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 2<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 6<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 24<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 120<br>
+        </span>&nbsp;<br>
+Tip: If you see the following error:<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+&nbsp;TypeError: nil can't be coerced into Fixnum</dt>
+      <dt>Your variable has not been initialized. <br>
+      </dt>
+    </dl>
+  
+  </dl>
+
+  <li>pg. 279 exercise 6.1<br>
+<br>
+  </li>
+  <dl>
+    <li>pg. 280 exercise 6.7<br>
+      <br>
+</li>
+    <li>Variation of &nbsp;exercises 6.15 and 6.16.
+&nbsp;Add two iterator <span style="text-decoration: underline;">methods</span>
+to the Tree class in&nbsp;<a href="hw7/TreeModule.py">TreeModule.py</a>.
+      <span style="font-weight: bold;"><span style="font-style: italic;">preorder</span>()</span>
+is an iterator that traverses the tree object in <span style="font-style: italic;">preorder</span> and <span style="font-weight: bold; font-style: italic;">postorder</span>()
+is an iterator that traverses the tree object in <span style="font-style: italic;">postorder. <br>
+<br>
+      </span></li>
+    
+<li>Repeat problem 5 using Ruby. Add two iterator <span style="text-decoration: underline;">methods</span>
+to the Tree class in <a href="hw7/treeModule.rb">treeModule.rb</a>. <span style="font-weight: bold;"><span style="font-style: italic;">preorder</span>()</span>
+is an iterator that traverses the tree object in <span style="font-style: italic;">preorder</span> and <span style="font-weight: bold; font-style: italic;">postorder</span>()
+is an iterator that traverses the tree object in <span style="font-style: italic;">postorder.</span>&nbsp;<br>
+<br>
+</li>
+<li> Python 3 has two built-in&nbsp;sequence types: <span style="font-style: italic; font-weight: bold;">tuple</span> ,
+immutable sequence and <span style="font-weight: bold;"><span style="font-style: italic;">list</span>, </span><span style="font-style: italic;">&nbsp;</span>mutable sequence. &nbsp;The
+language provides <span style="font-style: italic; font-weight: bold;">for</span>
+&nbsp;loop to iterate through items in any sequence. &nbsp;The
+script
+below prints out the each item in lst with it's sequence number.</li>
+<dl>
+<dd><span style="font-family: monospace;">i = 0</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">for item in lst :</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp;&nbsp;&nbsp; i = i+1</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp;&nbsp;&nbsp; print
+(repr(i) + " " + repr(item))</span></dd>
+</dl>
+<ol style="list-style-type: lower-alpha;">
+<li>Briefly explain the results of the following statements:</li>
+<ol style="font-family: monospace;">
+<li>seq = [1,2] + [1,2]</li>
+<li>seq = (1,2) +(1,2)</li>
+<li>seq = [1,2] + (1,2)</li>
+</ol>
+<li>Drawn a memory diagram of the following after each statement
+is executed:</li>
+<ol style="list-style-type: lower-roman;">
+<li>A = [(11,2),[1,2],99]</li>
+<li>B = [1, A, 99]</li>
+<li>A[1] = 77<br>
+<br>
+</li>
+</ol>
+      <li>Write a <span style="font-style: italic;">generator, </span>called
+'gen',that generates the following sequence: [1,2], [3,4], [5,6].&nbsp; <span style="font-style: italic;"></span><br>
+        <br>
+      </li>
+
+<li>What is the purpose of the functions <span style="font-style: italic;">'list'</span> and <span style="font-style: italic;">'iter'</span>?<br>
+        <br>
+</li>
+      <li>Will the script (above 'a') work if <span style="font-style: italic;">sequence</span>
+is a list? &nbsp;Will this script work if <span style="font-style: italic;">sequence </span>is a <span style="font-style: italic;">tuple</span>?&nbsp;
+Will this script work if the <span style="font-style: italic;">sequence </span>is created by a <span style="font-style: italic;">generator</span>? If it work for more than one type without modification briefly
+explain why. &nbsp;If it doesn't work can you modify the code so it work for&nbsp; <span style="font-style: italic;">all three types</span><span style="font-style: italic;"> -- </span>What problems do you encounter?<br>
+<br>
+      </li>
+
+<li>Write a <span style="font-style: italic;">for</span> loop
+which
+computes the "sum" (+) of items in an order sequence data type and
+print the result. &nbsp;Will your code work if your sequence contains
+only "string" items?&nbsp;&nbsp; Will your code work using 'gen'?&nbsp; If not explain why.&nbsp; Can you figure out what do <br>
+
+</li>
+    <br>
+    </ol>
+    <li>C++ and Java loops are often written with empty bodies
+by placing
+all side effects into the tests, such as in the following two examples:</li>
+    <ol style="list-style-type: lower-alpha;">
+
+    <dd><span style="font-family: monospace;"><br>
+      </span><span style="font-family: monospace; font-weight: bold;">i
+= 0;</span><br style="font-weight: bold;">
+      <span style="font-family: monospace; font-weight: bold;">while
+(a[i++]
+!=0);</span><br style="font-weight: bold;">
+      <span style="font-family: monospace; font-weight: bold;"></span><br style="font-weight: bold;">
+      <span style="font-family: monospace; font-weight: bold;">for
+(i = 0;
+a[i] != 0; i++);</span><br>
+      <span style="font-family: monospace;">&nbsp; </span><br>
+      <span style="font-family: monospace;"></span></dd>
+    <dt>Are these loops equivalent? Explain.</dt>
+    <dt><br>
+    </dt>
+    <dt><br>
+    </dt>
+  
+    </ol>
+</dl>
+  <li>Extra credit: Page 282 exercise 6.20 .&nbsp; <a href="hw7/TreeModule.py">TreeModule.py</a>
+contains a
+class definition of a binary tree. <a href="hw7/UsingTrees.py">UsingTrees.py</a>
+contains code to illustrate how to create and use Tree objects.&nbsp;
+Use
+"def prettyPrint(trees)" in UsingTrees to printout a collection of
+trees. .&nbsp;&nbsp; See Blackboard (Documents) for a copy of section 2
+of Finkel referred to in
+the problem.<br>
+  </li>
+</ol>
+
+
+<dd>
+  <dl>
+  </dl>
+</dd>
+
+</body></html>

@@ -1,0 +1,141 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head>
+  <title>Scott's Chap 3: ,Binding - Scope - Referencing</title>
+
+  
+  
+  <meta http-equiv="content-type" content="text/html; charset=ISO-8859-1">
+
+  
+  <meta name="author" content="E Head">
+
+</head><body>
+<div style="text-align: center;">
+<h3>Homework Assignment 6</h3>
+</div>
+
+<span style="font-weight: bold;"></span>
+<ol>
+
+</ol>
+
+READ Chapter 3: pgs 111-121, 123-163, Chapter 8: pgs 383-389, <meta http-equiv="content-type" content="text/html; charset=utf-8"><span class="Apple-style-span" style="border-collapse: separate; color: rgb(0, 0, 0); font-style: normal; font-variant: normal; font-weight: normal; letter-spacing: normal; line-height: normal; orphans: 2; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; font-size: medium;"><span class="Apple-style-span" style=""><span class="Apple-converted-space"> </span>Chapter 13 pgs:672-676,691-696 </span></span><br>
+
+This may be done in groups of 2.&nbsp; All students must join a group
+for hw6 -- either 1 or 2 members.<br>
+
+<ol>
+
+  <li>Page 163 exercise 3.1<br>
+  </li>
+  <li>Use <span style="font-style: italic;">gcc</span>&nbsp;
+to create an assembly file of <a href="powerR.c">powerR.c</a>&nbsp;
+(gcc -S powerR.c -std=iso9899:1999). &nbsp;(Note: This file
+(program) can not compile and run as is because there is no <span style="font-style: italic;">main</span>.)<span style="font-style: italic;"></span> &nbsp;You can
+run this remotely in harvey (see blackboard) or on campus using either
+of the Linux rooms. &nbsp;</li>
+  <ol style="list-style-type: lower-alpha;">
+    <li>Draw the activation record for powerR(). &nbsp;
+Field's offset should be consistent with the assembly code.&nbsp;</li>
+    <li>Which way does the program stack grow? (i.e. towards
+higher addresses or lower addresses?)</li>
+    <li>Annotated
+the powerR.s file. &nbsp;Indicate all the instruction that read,
+write,
+"create" or "delete" the stack memory. &nbsp;Name the fields
+affected by
+instruction.<br>
+e.g<br>
+31::&nbsp; movl&nbsp;&nbsp;&nbsp; $13, -4(%ebp) --
+copies the value to the "<span style="font-style: italic;">n</span>"
+argument field in the AR.<br>
+    </li>
+  </ol>
+  <li>For each of the following individuals write 2 or 3
+sentences
+describing
+their contribution to Programming Languages/Software development.
+&nbsp;Also include a
+non-cs&nbsp; fact you found interesting about the person and any
+links(or references) you found useful.<br>
+  </li>
+  <ol style="list-style-type: upper-alpha;">
+    <li>Elaine Weyuker
+    </li>
+    <li>Grace Hopper</li>
+    <li>Grete Hermann (Relate one of her papers to CS.).<br>
+    </li>
+    <li>Frances Elizabeth "Fran" Allen</li>
+    <li>Barbara Liskov (born Barbara Huberman)</li>
+    <li>Erna Schneider</li>
+    <li>Adele Goldberg (b. 1945)<br>
+      <br>
+    </li>
+  </ol>
+  <li>Many storage-management algorithms maintain a list of <span style="font-style: italic;">free blocks. &nbsp;</span>Here are two
+different algorithms, <span style="font-style: italic;">first fit</span>
+and <span style="font-style: italic;">best fit</span>,
+used to search this list and return a block of the appropriate size.
+&nbsp;Which strategy, if either, will result in lower external
+fragmentation? &nbsp;What does external fragmentation depend on?<br>
+  </li>
+  <li>What is the complexity of using <span style="font-style: italic;">first
+fit</span>
+algorithm to allocate blocks? &nbsp;Briefly explain an algorithm to
+speed up
+the allocation. What is the complexity of this modification?<br>
+  </li>
+  <li>Page 121 CYU( check your understand) #4, page 132 CYU #12, 15, 20
+and page 164 exercise 3.4.</li>
+  <li>Why
+has it been only in recent years that C rivals their Fortran
+counterparts in speed of generated code? What is the purpose of the <span style="font-family: monospace;">restrict </span>qualifier in C.&nbsp;
+Does the language enforce the <span style="font-family: monospace;">restrict
+    </span>qualifier semantics?</li>
+  <li>Page 165 exercise 3.7.</li>
+  <li>Page 168 exercise 3.14</li>
+  <li>Page 721 exercise 13.11 (<a href="chap1311.perl">perl
+program</a>)</li>
+  <li>Consider the following pseudo code:<br style="font-family: monospace;">
+<div style="margin-left: 40px;"><span style="font-family: monospace;">&nbsp;&nbsp; x : integer := 1</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp;
+&nbsp;y : integer := 10</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp;&nbsp;
+procedure add()</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+x := x + y</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp;&nbsp;
+procedure second(P : procedure)</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+x : integer := 2</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+P()</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp;&nbsp;
+procedure first()</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+y : integer := 3</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+second(add)<br>
+</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp;&nbsp;
+first()</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp;&nbsp;
+write integer(x)<br>
+<br>
+</span></div>
+  </li>
+
+<ol style="list-style-type: lower-alpha;">
+<li>What does this program print if the language uses static
+scoping?</li>
+<li>Explain why 4 is printed out if the language uses dynamic
+scoping with deep binding.</li>
+<li>Explain why 1 is printed out&nbsp;if the language
+uses dynamic scoping with shallow binding.<br>
+<br>
+</li>
+  <dl>
+  </dl>
+</ol>
+</ol>
+</body></html>
