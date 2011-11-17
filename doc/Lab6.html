@@ -1,0 +1,570 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html><head>
+
+
+
+
+
+
+
+
+
+
+  
+  <meta content="text/html; charset=ISO-8859-1" http-equiv="content-type"><title>Haskell Lab 1</title></head><body>
+Haskell Lab 1:<br>
+
+You may use either HUGS or GHCi for the assignments.<br>
+<a href="http://bingweb.binghamton.edu/%7Ehead/CS471/NOTES/HASKELL/0hSpr05.html">Head's helpful(?) hints on using Haskell</a><br>
+<a href="http://bingweb.binghamton.edu/%7Ehead/CS471/CODE/Scripts/ExampleL.lhs">Simple Haskell code</a><br>
+
+<ol>
+
+  <li>Using interactive Haskell.&nbsp; <br>
+  </li>
+  <ol>
+    <li>Open either HUGS window or GHCi window.&nbsp; <br>
+    </li>
+    <ol style="list-style-type: lower-alpha;">
+      <li>If you open "hugs"&nbsp; the last line in the window will be <br>
+      </li>
+      <dl>
+        <dd>Hugs&gt; <br>
+        </dd>
+      </dl>
+This is the prompt.<br>
+      <br>
+      <li>If you open GHCi window the last line in the window will be <br>
+      </li>
+      <dl>
+        <dd>Prelude&gt;</dd>
+This is the prompt.<br>
+      </dl>
+      <li>If you like create a "launcher" in Ubunto or Debian as
+follows.&nbsp;&nbsp;</li>
+      <ol>
+        <li>Right click on tool bar and select <span style="font-style: italic;">Add to Panel.</span></li>
+        <li><span style="font-style: italic;"><span style="font-style: italic;"></span></span>Choose<span style="font-style: italic;"><span style="font-style: italic;"></span>
+Custom Application Launcher</span>&nbsp; <br>
+        </li>
+        <li>For type select <span style="font-style: italic;">Application
+in Terminal</span></li>
+        <li><span style="font-style: italic;"><span style="font-style: italic;"></span></span>Type command type: (for ghci)<br>
+          <span style="font-style: italic;"><span style="font-style: italic;"></span>gnome-terminal
+--working-directory="&lt;myWorkingdir&gt;" -t ghci -e "ghci"<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; OR for Hugs<br>
+gnome-terminal --working-directory="</span><span style="font-style: italic;">&lt;myWorkingdir&gt;</span><span style="font-style: italic;">" -t HUGS -e "hugs +98 +sEgedit " <br>
+<br>
+          </span></li>
+      </ol>
+      <dl>
+      </dl>
+    </ol>
+    <li>Online documentation for the GHC:&nbsp;</li>
+    <dl>
+      <dd><a href="http://www.haskell.org/haskellwiki/GHC/GHCi"><br>
+http://www.haskell.org/haskellwiki/GHC/GHCi</a>&nbsp;
+        <br>
+      </dd>
+      <dd><a href="http://www.haskell.org/ghc/docs/6.10-latest/html/users_guide/index.html"><span style="text-decoration: underline;">http://www.haskell.org/ghc/docs/6.10-latest/html/users_guide/index.html</span></a><a href="http://www.haskell.org/ghc/docs/6.10-latest/html/users_guide/index.html"><span style="text-decoration: underline;"><br>
+</span></a><a href="http://www.haskell.org/hoogle/"><span style="text-decoration: underline;">
+http://www.haskell.org/hoogle/<br>
+        <br>
+</span></a>
+      </dd>
+    </dl>
+    <li>Interactive commands are available at the prompt.&nbsp; ":?"
+will list all the commands.&nbsp; ":cd" will allow you to change
+directory. The most useful&nbsp; will be <br>
+    </li>
+    <dl>
+      <dd>:!&lt;command&gt;&nbsp;&nbsp;&nbsp; which runs the shell
+command &lt;command&gt;</dd>
+      <dt>For example:</dt>
+      <dd>Prelude&gt; :!ls<br>
+        <br>
+</dd>
+      <dd>Hugs&gt; :!pwd</dd>
+      <dd>Hugs&gt; :cd ..<br>
+      </dd>
+      <dt><br>
+      </dt>
+    </dl>
+    <li>At the prompt type any numerical expressions.&nbsp; For example:<br>
+      <br>
+</li>
+    <dl>
+      <dd>Prelude&gt; 3 + 4<br>
+Prelude&gt; sqrt(25)<br>
+<br>
+Hugs&gt; (+) 3 4<br>
+      </dd>
+      <dd>Hugs&gt; div 10 3</dd>
+      <dd>Hugs&gt; 10 `div` 3<br>
+Hugs&gt; (-) 2 5<br>
+
+Hugs&gt; (2 - ) 5</dd>
+    </dl>
+  </ol>
+</ol>
+<h4>----------------------------------- Turn in answers for Parts 2 ------------------</h4>
+<h3>Alternation, types, set of types (Classes), type inference and specifing types<span style="font-weight: bold;"> </span></h3>
+<h4>PART 2&nbsp;</h4>
+ 
+<ol>
+<li>Create a Haskell script file using your favorite editor.&nbsp; We
+are going to create a program/script using the literal style of&nbsp;
+coding.&nbsp; Each line of code will begin with&nbsp; "&gt; ".&nbsp;
+Becare not to mix tabs and spaces.&nbsp; Lines with comments can begin
+with any character except "&gt;".&nbsp;&nbsp;</li>
+  <ol style="list-style-type: lower-alpha;">
+    <li type="a">The first 2 lines of the file should be:<br>
+      <br>
+</li>
+    <dl style="font-weight: bold;">
+      <dd><span style="font-family: monospace;">&gt; module Lab1</span><br style="font-family: monospace;">
+        <span style="font-family: monospace;">&gt;&nbsp;&nbsp;&nbsp;&nbsp;
+where<br>
+        <br>
+</span></dd>
+    </dl>
+    <dl>
+      <dt>Notice there is a space between "&gt;" and <span style="font-style: italic;">module</span>,&nbsp; the identifer "<span style="font-style: italic;">Lab</span>1" begins with a capital. There can be 1 or more spaces between "&gt;" and<span style="font-style: italic;"> where</span>. <br>
+<br>
+      </dt>
+    </dl>
+    <li>Line 3 should be a blank line. Enter the following comment on
+line 4.&nbsp; The comment can start in column 1.<br>
+<br>
+    </li>
+    <dl>
+      <dd><span style="font-family: monospace; font-weight: bold;">Define factorial.&nbsp;
+Let Haskell infer the type of factorial.</span><br style="font-weight: bold;">
+<br>
+      </dd>
+    </dl>
+    <li>Enter another blank line. Type the following 1 line definition
+of <span style="font-style: italic;">factorial</span>.&nbsp; Remember
+"=" means <span style="font-weight: bold;"><span style="font-style: italic;">defined
+as</span></span> and "==" is the equals operator. This
+code uses a <span style="font-style: italic;">if</span>
+expression.&nbsp; What is the
+difference between an <span style="font-style: italic;">if statement</span>
+and an <span style="font-style: italic;">if expression</span>?&nbsp; <br>
+      <br>
+</li>
+    <dl>
+      <dd><span style="font-family: monospace;"><span style="font-weight: bold;">&gt; factorial n = if n
+== 0 then 1 else n * factorial (n - 1)</span><br>
+        <br>
+</span></dd>
+    </dl>
+    <li><span style="font-family: monospace;"></span>Save text in a
+file named "Lab1.lhs".&nbsp; Notice the name matches the module
+name.&nbsp; <br>
+      <br>
+</li>
+    <li>Make sure you are in the folder with "Lab1.lhs" and open Hugs
+or GHCi. At the prompt type:<br>
+      <br>
+</li>
+    <dl>
+      <dd style="font-family: monospace; font-weight: bold;">....&gt;
+:l Lab1.lhs<br>
+        <br>
+</dd>
+      <dt>Notice the prompt will change to the name of the module</dt>
+      <dd><span style="font-family: monospace;">Lab1&gt; </span><br>
+      </dd>
+    </dl>
+    <li>At the prompt type the expression<br>
+      <br>
+</li>
+    <dl>
+      <dd style="font-family: monospace; font-weight: bold;">Lab1&gt; factorial 5<br>
+        <br>
+</dd>
+      <dt>What do you see?&nbsp; What is the infered type of <span style="font-style: italic;">factorial</span>?&nbsp; (At the prompt typed :t factorial).<br>
+</dt>
+      <dd><br>
+      </dd>
+    </dl>
+  </ol>
+  <li>Open "Lab1.lhs" in an editor.&nbsp; One way is to type ":e" at
+the prompt.&nbsp; The symbol/operator "::" means <span style="font-style: italic;">has type.</span> Add the following
+definitions to the file (Lines 7 -10).&nbsp; (Line 7) tells Haskell the
+type of the <span style="font-style: italic;">fact</span>1, <br>
+<br>
+  </li>
+  <ol>
+    <dl>
+      <dd><span style="font-family: monospace; font-weight: bold;">&gt;
+fact1 :: Int -&gt; Int </span><br style="font-family: monospace; font-weight: bold;">
+        <span style="font-family: monospace; font-weight: bold;">&gt;
+fact1 n = if n == 0 then 1 else n * fact1 (n - 1)<br>
+&gt;</span><span style="font-family: monospace; font-weight: bold;">
+fact2 :: Integer -&gt; Integer </span><br style="font-family: monospace; font-weight: bold;">
+        <span style="font-family: monospace; font-weight: bold;">&gt;
+fact2 n = if n == 0 then 1 else n * fact2 (n - 1)</span><br>
+        <span style="font-family: monospace; font-weight: bold;"><br>
+        </span></dd>
+      <dt>Save and reload the script. (:r).&nbsp; <br>
+<br>
+      </dt>
+    </dl>
+  </ol>
+  <li>Lets run some experiments. At the prompt type these expressions:<br>
+    <br style="font-family: monospace; font-weight: bold;">
+</li>
+  <ol><span style="font-family: monospace; font-weight: bold;">
+Lab1&gt; factorial 12</span><br style="font-family: monospace; font-weight: bold;"><span style="font-family: monospace; font-weight: bold;">
+Lab1&gt; fact1 12</span><br style="font-family: monospace; font-weight: bold;"><span style="font-family: monospace; font-weight: bold;">
+Lab1&gt; fact2 12</span><br style="font-family: monospace; font-weight: bold;"><span style="font-family: monospace; font-weight: bold;">
+Lab1&gt; factorial 13</span><br style="font-family: monospace; font-weight: bold;"><span style="font-family: monospace; font-weight: bold;">
+Lab1&gt; fact1 13</span><br style="font-family: monospace; font-weight: bold;"><span style="font-family: monospace; font-weight: bold;">
+Lab1&gt; fact2 13</span><br style="font-family: monospace; font-weight: bold;"><span style="font-family: monospace; font-weight: bold;">
+Lab1&gt; factorial 500</span><br style="font-family: monospace; font-weight: bold;"><span style="font-family: monospace; font-weight: bold;">
+Lab1&gt; fact1 500</span><br style="font-family: monospace; font-weight: bold;"><span style="font-family: monospace; font-weight: bold;">
+Lab1&gt; fact2 500</span><br>
+<br>
+What happens and why.<br>
+    <dl>
+      <dd><br>
+      </dd>
+    </dl>
+  </ol>
+  <li>Lets runs some experiments.&nbsp; At this point you may not
+understand the infered types. At the prompt type the following commands:<br>
+    <br>
+</li>
+  
+  <ol>
+
+    
+    <dl><span style="font-weight: bold; font-family: monospace;">
+
+:t fact1</span><br style="font-weight: bold; font-family: monospace;"><span style="font-weight: bold; font-family: monospace;">
+:t fact1 5 <br>
+:t (*)<br>
+:t (==) <br>
+      </span><span style="font-weight: bold; font-family: monospace;">:t 5</span><br style="font-weight: bold; font-family: monospace;"><span style="font-weight: bold; font-family: monospace;">
+:t 5.1</span><br style="font-weight: bold; font-family: monospace;"><span style="font-weight: bold; font-family: monospace;">
+:t 5::Int</span><br style="font-weight: bold; font-family: monospace;"><span style="font-weight: bold; font-family: monospace;">
+:t factorial</span><br style="font-weight: bold; font-family: monospace;"><span style="font-weight: bold; font-family: monospace;">
+:t factorial 5</span><br style="font-weight: bold; font-family: monospace;"><span style="font-weight: bold; font-family: monospace;">
+:t (-)</span><br style="font-weight: bold; font-family: monospace;"><span style="font-weight: bold; font-family: monospace;">
+:t (2-) </span><br style="font-weight: bold; font-family: monospace;"><span style="font-weight: bold; font-family: monospace;">
+:t (-) 2</span><br style="font-weight: bold; font-family: monospace;"><span style="font-weight: bold; font-family: monospace;">
+:t error</span><br>
+      <dt><br>
+      </dt>
+      <dt>"Num a" means --- <span style="font-style: italic;">Num</span>
+is a set of types and <span style="font-style: italic;">a</span>
+belongs to the set.&nbsp; Types that belong to <span style="font-style: italic;">Num</span> are Int, Integer, Float and
+others including user defined types.&nbsp; Haskell calls these
+sets&nbsp; --CLASSES--&nbsp; At the prompt type the following expressions:</dt>
+      <dd><span style="font-family: monospace;">Lab1&gt; factorial (-2)</span><br>
+</dd>
+      <dt>What happens and why?&nbsp; <br>
+At the prompt type the following expressions:</dt><dd style="font-family: monospace; font-weight: bold;">Lab1&gt; factorial -2</dd>
+      <dt>What happens?<br>
+      </dt>
+      <dd><br>
+      </dd>
+
+      
+    
+    </dl>
+
+  
+  </ol>
+
+  <li>Edit "Lab1.lhs" again.&nbsp; Instead of using <span style="font-style: italic;">if</span> expression, you will use <span style="font-style: italic;">pattern matching</span>. Noticed that the
+first definition of <span style="font-style: italic;">factP</span> has
+"0" instead of an variable. Add the following (lines 11-13):<br>
+<br style="font-weight: bold;">
+  </li>
+  <ol>
+    <dl>
+      <dd><span style="font-family: monospace; font-weight: bold;">&gt; factP :: Integer
+-&gt; Integer</span><br style="font-family: monospace; font-weight: bold;">
+        <span style="font-family: monospace; font-weight: bold;">&gt; factP 0 = 1</span><br style="font-family: monospace; font-weight: bold;">
+        <span style="font-family: monospace;"><span style="font-weight: bold;">&gt; factP n = n *
+factP(n -1)</span><br>
+        <br>
+</span></dd>
+      <dt>Reload the module and test <span style="font-style: italic;">factP</span>
+using data from part2 #3<br>
+        <br>
+      </dt>
+    </dl>
+  </ol>
+  <li>Edit "Lab1.lhs" again.&nbsp; Instead of using <span style="font-style: italic;">if</span> expression,&nbsp; you will use
+guards. Notice the indentation (spaces between "&gt;" the "|" (the
+guard)). In addition <span style="font-style: italic;">error</span>
+will be used to catch negative input.&nbsp; Add the following (lines
+14-17)<br>
+    <br>
+</li>
+  <ol>
+    <dl>
+      <dd><span style="font-family: monospace; font-weight: bold;">&gt;
+factG x</span><br style="font-family: monospace; font-weight: bold;">
+        <span style="font-family: monospace; font-weight: bold;">&gt;&nbsp;&nbsp;&nbsp;&nbsp;
+| x &lt; 0&nbsp;&nbsp;&nbsp;&nbsp; = error "neg x"</span><br style="font-family: monospace; font-weight: bold;">
+        <span style="font-family: monospace; font-weight: bold;">&gt;&nbsp;&nbsp;&nbsp;&nbsp;
+| x == 0&nbsp;&nbsp;&nbsp; = 1</span><br style="font-family: monospace; font-weight: bold;">
+        <span style="font-family: monospace; font-weight: bold;">&gt;&nbsp;&nbsp;&nbsp;&nbsp;
+| otherwise = x*factG(x-1)<br>
+        <br>
+</span></dd>
+      
+      <dt>How many definitions are there? Reload <span style="font-style: italic;">Lab</span>1 and
+test <span style="font-style: italic;">factG.&nbsp; </span>What
+happens when you type factG (-2)? <br>
+&nbsp;</dt>
+    </dl>
+  </ol>
+  <li>Edit "Lab1.lhs" again.&nbsp; Add the following two definitions
+(lines 18-27).<br>
+    <br style="font-weight: bold;">
+</li>
+  
+    
+      <dd style="font-weight: bold;"><span style="font-family: monospace;">&gt; factG2 :: Integer
+-&gt; Integer</span><br style="font-family: monospace;">
+        <span style="font-family: monospace;">&gt; factG2 n</span><br style="font-family: monospace;">
+        <span style="font-family: monospace;">&gt;&nbsp;&nbsp;&nbsp;&nbsp;
+| n &lt; 0&nbsp;&nbsp;&nbsp;&nbsp; = error "neg n"</span><br style="font-family: monospace;">
+        <span style="font-family: monospace;">&gt;&nbsp;&nbsp;&nbsp;&nbsp;
+| n == 0&nbsp;&nbsp;&nbsp; = 1</span><br style="font-family: monospace;">
+        <span style="font-family: monospace;">&gt;&nbsp;&nbsp;&nbsp;&nbsp;
+| otherwise = n * factG2 (n - 1)</span><br style="font-family: monospace;">
+        <span style="font-family: monospace;">&gt; factE :: Integer
+-&gt; Integer</span><br style="font-family: monospace;">
+        <span style="font-family: monospace;">&gt; factE n</span><br style="font-family: monospace;">
+        <span style="font-family: monospace;">&gt;&nbsp;&nbsp;&nbsp;&nbsp;
+| n &lt; 0&nbsp;&nbsp;&nbsp;&nbsp; = error "neg n"</span><br style="font-family: monospace;">
+        <span style="font-family: monospace;">&gt;&nbsp;&nbsp;&nbsp;&nbsp;
+| n == 0&nbsp;&nbsp;&nbsp; = 1</span><br style="font-family: monospace;">
+        <span style="font-family: monospace;">&gt;&nbsp;&nbsp;&nbsp;&nbsp;
+| otherwise = n * factE n - 1</span></dd>
+  <dd>&nbsp;</dd>
+
+
+      <dt><br>
+  </dt>
+  <dt>
+At the prompt type these expressions:<br>
+        <br>
+  </dt>
+
+  <dd><span style="font-family: monospace; font-weight: bold;">Lab1&gt;
+factorial 5.1 <br>
+Lab1&gt; factG 5.1</span><span style="font-family: monospace; font-weight: bold;"><br>
+Lab1&gt;
+factG2 5.1<br>
+        <br>
+</span></dd>
+
+      <dt>What happens and why?<br>
+<br>
+      </dt>
+
+      <dt>At the prompt type these expressions:<br>
+        <br>
+  </dt>
+
+
+      <dd><span style="font-family: monospace; font-weight: bold;">Lab1&gt;
+factG2 5</span><br style="font-family: monospace; font-weight: bold;">
+        <span style="font-family: monospace; font-weight: bold;">Lab1&gt;
+factE 5<br>
+        <br>
+</span></dd>
+
+      <dt>What happens and why?&nbsp; (You may want to finish Part 3 before you complete question.)&nbsp;&nbsp;</dt>
+</ol>
+<br>
+<h4>
+
+Part 3: Functions of 1 variable -- Curried functions&nbsp; -- And function composition<br>
+</h4>
+
+
+
+
+
+<ul>
+<li> In the development of functional notations as a model of
+computation, it has been important to concentrate on functions of one
+variable</li><li> Curry did considerable work in the area. The idea is often used
+today in mathematics.</li><li>Reference: <a href="http://planetmath.org/encyclopedia/Schonfinkelization.html">PlanetMath -- Currying</a><br>
+  </li>
+</ul>
+
+
+
+
+
+
+<ol>
+<li>Edit "Lab1.lhs" again.&nbsp; Add a line with the comment, "Tuple
+Data Type",&nbsp; surrounded by a blank line (lines 28-30). Add the
+following definition (line 31):<br>
+    <br>
+</li>
+  <ol>
+    <span style="font-family: monospace;"><span style="font-weight: bold;">&gt; sumT (a,b,c) = a + b
++ c</span><br>
+<br>
+      </span>Save and reload "Lab1.lhs".&nbsp; Evaluate the following
+expressions: sumT(2,3,4), sumT(2, -3, 4).&nbsp; What is the infered
+type of <span style="font-style: italic;">sum</span>T?<br>
+    <br>
+    <br>
+  </ol>
+<li>Edit "Lab1.lhs" again.&nbsp; Add a line with the comment,
+"Curried functions",&nbsp; surrounded by a blank line (lines 32-34).
+Add the following
+definition (line 35):<br>
+    <br>
+</li>
+  <dl>
+    <dt><span style="font-family: monospace;"><span style="font-weight: bold;">&gt; sumC a b c = a + b + c</span><br>
+    <br>
+      </span></dt>
+    <dt>Save and reload "Lab1.lhs".&nbsp; Evaluate the following
+expressions: <span style="font-weight: bold; font-family: monospace;">sumC 2 3 4</span>.&nbsp; What is the infered type of <span style="font-style: italic;">sum</span>C? (At the prompt type:&nbsp;
+Lab1&gt; :t sumC)<br>
+      <br>
+
+  </dt>
+  </dl>
+<li>Edit "Lab1.lhs" again. Add the following
+definition(line 36-37):<br>
+    <br>
+</li><span style="font-family: monospace;">&nbsp;<span style="font-weight: bold;">&nbsp; &gt; sumCx :: Num
+a =&gt; a -&gt; (a -&gt; (a-&gt;a))</span></span><br style="font-family: monospace; font-weight: bold;"><span style="font-family: monospace; font-weight: bold;">&nbsp;&nbsp; &gt; sumCx a b c =
+a + b + c </span><br><br>
+Save and reload "Lab1". Evaluate the following expression: sumCx 2 3
+4.&nbsp;  <br>
+<br>
+  <ol>
+ At the prompt type:&nbsp; <br style="font-family: monospace;">
+
+  
+    <ol>
+      <span style="font-family: monospace;">Lab1&gt; :t sumCx</span> <br>
+
+    
+    </ol>
+
+to display the type infered by Haskell. &nbsp; How does this compare to
+the infered type in Part 3#2?&nbsp;&nbsp; Now maybe you can figure out part 2 # 7.<br>
+  </ol>
+<br><li>Edit "Lab1.lhs" again. Add the following
+definition(line 38-41):<br>
+    <br>
+</li>
+  <ol>
+    <span style="font-family: monospace; font-weight: bold;">&gt; sumC1&nbsp; = sumC 1</span><br style="font-family: monospace; font-weight: bold;">
+
+      <span style="font-family: monospace; font-weight: bold;">&gt; sumC2&nbsp; = sumC1 2</span><br style="font-family: monospace; font-weight: bold;">
+
+      <span style="font-family: monospace; font-weight: bold;">&gt; sumC3&nbsp; = sumC2 3</span><br style="font-family: monospace; font-weight: bold;">
+
+      <span style="font-family: monospace;"><span style="font-weight: bold;">&gt; sumC12 = sumC 1 2</span><br>
+      <br>
+    </span>Notice that each definition DOES NOT HAVE AN <span style="font-style: italic;">argument</span>!<span style="font-style: italic;"> </span>Do
+you think this is legal or illegal?&nbsp; If it legal predict the type
+of each definition. Now save and reload to verify your
+hypothesis.&nbsp; <br>
+
+    <br>
+
+    
+  </ol>
+<li>Assuming the code added in 4 is legal evaluate the following expression:<br>
+    <br style="font-weight: bold;">
+</li>
+  <ol>
+    <span style="font-family: monospace;">Lab1&gt; sumC 1 2 3</span><br style="font-family: monospace;">
+
+      <span style="font-family: monospace;">Lab1&gt; </span><span style="font-family: monospace;">sumC1 2 3 </span><br style="font-family: monospace;">
+
+      <span style="font-family: monospace;">Lab1&gt; </span><span style="font-family: monospace;">sumC2 3</span><br style="font-family: monospace;">
+
+      <span style="font-family: monospace;">Lab1&gt; </span><span style="font-family: monospace;">sumC3<br>
+      <br>
+    </span>sumC1,
+sumC2, sumC3 and sumC12 all include use partially evalutated functions
+in their definitions.&nbsp; Can you write similar definitions using
+sumT? For example are any of the following definitions legal?<br>
+
+      <br>
+
+    <span style="font-family: monospace;">&nbsp;&nbsp;<span style="font-weight: bold;"> sumT1 = sumT 1 </span></span><br style="font-family: monospace; font-weight: bold;">
+    <span style="font-family: monospace; font-weight: bold;">
+&nbsp;&nbsp; sumT2 = sumT(1) </span><br>
+    <span style="font-family: monospace; font-weight: bold;">
+&nbsp;&nbsp; sumT4 = sumT(1,2)</span><br style="font-family: monospace; font-weight: bold;">
+    <span style="font-family: monospace; font-weight: bold;">
+&nbsp;&nbsp; sumT3 = sumT(1,x,y)</span><br style="font-weight: bold;">
+
+    <br>
+
+    
+  </ol>
+<li>&nbsp;As you can see -- so far -- we are doing a lot of function
+application.&nbsp; Numbers are just constant functions.&nbsp; After
+completing Part 3 #1-5, you should be able to figure out the
+associativity (right or left)of function application.&nbsp;&nbsp; Which
+parenthesize expression is the definition of F G H?&nbsp; Does F G H =
+F ( G H)&nbsp; or does F G H = ( F&nbsp; G ) H?&nbsp; Now you can
+complete Part 2 # 7.<br>
+    <br>
+    <br>
+</li>
+  <li>&nbsp;Composition :&nbsp;&nbsp; (Reference <a href="http://www.purplemath.com/modules/fcncomp3.htm">Composition of Functions:</a>)<br>
+  </li>
+  <ol style="list-style-type: upper-alpha;">
+    <li>Do this by hand -- Given: <br>
+    </li>
+    <dd>f(x) = x*2 - 5 <br>
+    </dd>
+    <dd>g(x) = (3 * x -1) * 2</dd>
+    <dt>a) Let h be defined to be (f o g) ( i.e
+      <span style="font-style: italic;">h </span>is <span style="font-style: italic;">f</span> composed with <span style="font-style: italic;">g</span>) .&nbsp; What is the result of
+h(x) ?&nbsp; Use the definition of f and g above.&nbsp; <br>
+
+&nbsp;&nbsp; Remember&nbsp; (f o g) x is defined to be f ( g(x) ).</dt>
+    <dt><br>
+    </dt>
+    <dt>b) Let h2 be defined to be ( g o f )? What is the result of h2(x) ?<br>
+      <br>
+      <br>
+      <br>
+    </dt>
+    <dt>c) What is the value of&nbsp; h(2 )?<br>
+      <br>
+      <br>
+      <br>
+    </dt>
+    <dt>d)What is the value of&nbsp; h2 (2 ) ? </dt>
+
+
+
+
+    <br>
+    <br>
+    <li>Program <span style="font-style: italic;">h </span>and<span style="font-style: italic;"> h</span>2 in Haskell&nbsp;&nbsp;</li>
+Write a haskell definition of f, g, h and h2.&nbsp; Use the composition
+operator (.) to define h and h2.&nbsp; Notice that composition operator
+returns a function and you do not need to include the argument x in
+your&nbsp; definition of h and h2. i.e. The left hand side of the
+definition for h (and h2) need only h =..... <br>
+    <br>
+  </ol>
+</ol>
+<br>
+</body></html>
