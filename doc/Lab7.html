@@ -1,0 +1,235 @@
+<!DOCTYPE doctype PUBLIC "-//w3c//dtd html 4.0 transitional//en">
+<html><head>
+
+
+
+
+
+  
+  <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+
+  
+  <meta name="Author" content="Eileen Head">
+
+  
+  <meta name="GENERATOR" content="Mozilla/4.73 [en] (Win98; U) [Netscape]"><title>Lab 7</title></head><body style="color: rgb(0, 0, 0); background-color: rgb(255, 255, 249);" alink="#3333ff" link="#000099" vlink="#000099">
+<center>
+<h3> Lab 7<span style="font-style: italic;"></span></h3>
+<div style="text-align: left;"><a href="LabH7F11.lhs">LabH7F11.lhs</a><br>
+</div></center><ul>
+
+</ul>
+
+<ol>
+
+</ol>
+
+1) " A common way to compute the square root is to use
+Newton's
+method of successive approximations. &nbsp; <a href="http://mitpress.mit.edu/sicp/full-text/sicp/book/node12.html">Newton's
+method says that whenever
+we have a guess <em>y</em> for the value of the square
+root of a
+number <em>x</em>, we can perform a simple manipulation to
+get a
+better guess (one closer to the actual square root) by averaging <em>y</em>
+with <em>x</em>/<em>y</em>. </a>&nbsp;<a href="http://mitpress.mit.edu/sicp/full-text/sicp/book/node12.html">
+For
+example, we can compute the square root of 2 as follows. Suppose our
+initial guess is 1:</a>
+<p>
+<table cellpadding="3">
+  <tbody>
+    <tr>
+      <td align="left">Guess</td>
+      <td align="left">Quotient</td>
+      <td align="left">Average</td>
+    </tr>
+    <tr>
+      <td align="left">&nbsp;</td>
+      <td align="left">&nbsp;</td>
+      <td align="left">&nbsp;</td>
+    </tr>
+    <tr>
+      <td align="left">1</td>
+      <td align="left">&nbsp;<img style="border: 0px solid ; width: 44px; height: 49px;" src="Img/img7.gif" alt="${\displaystyle \frac{2}{1} = 2}$" align="middle"></td>
+      <td align="left"> <comment title=" MATH: ${\displaystyle \frac{(2+1)}{2} = 1.5}$ " xmlns="http://disruptive-innovations.com/zoo/nvu"><!-- MATH: ${\displaystyle
+\frac{(2+1)}{2} = 1.5}$ --></comment>
+      <img src="Img/img8.gif" alt="${\displaystyle
+\frac{(2+1)}{2} = 1.5}$" align="middle" border="0" height="53" width="96"></td>
+    </tr>
+    <tr>
+      <td align="left">&nbsp;</td>
+      <td align="left">&nbsp;</td>
+      <td align="left">&nbsp;</td>
+    </tr>
+    <tr>
+      <td align="left">1.5</td>
+      <td align="left"> <comment title=" MATH: ${\displaystyle \frac{2}{1.5} = 1.3333}$ " xmlns="http://disruptive-innovations.com/zoo/nvu"><!-- MATH: ${\displaystyle \frac{2}{1.5} = 1.3333}$ --></comment>
+      <img src="Img/img9.gif" alt="${\displaystyle \frac{2}{1.5} = 1.3333}$" align="middle" border="0" height="49" width="93"></td>
+      <td align="left"> <comment title=" MATH: ${\displaystyle \frac{(1.3333+1.5)}{2} = 1.4167}$ " xmlns="http://disruptive-innovations.com/zoo/nvu"><!-- MATH: ${\displaystyle
+\frac{(1.3333+1.5)}{2} = 1.4167}$ --></comment>
+      <img src="Img/img10.gif" alt="${\displaystyle
+\frac{(1.3333+1.5)}{2} = 1.4167}$" align="middle" border="0" height="53" width="169"></td>
+    </tr>
+    <tr>
+      <td align="left">&nbsp;</td>
+      <td align="left">&nbsp;</td>
+      <td align="left">&nbsp;</td>
+    </tr>
+    <tr>
+      <td align="left">1.4167</td>
+      <td align="left"> <comment title=" MATH: ${\displaystyle \frac{2}{1.4167} = 1.4118}$ " xmlns="http://disruptive-innovations.com/zoo/nvu"><!-- MATH: ${\displaystyle \frac{2}{1.4167} = 1.4118}$ --></comment>
+      <img src="Img/img11.gif" alt="${\displaystyle \frac{2}{1.4167} = 1.4118}$" align="middle" border="0" height="49" width="117"></td>
+      <td align="left">&nbsp;<img style="border: 0px solid ; width: 193px; height: 53px;" src="Img/img12.gif" alt="${\displaystyle" align="middle"></td>
+    </tr>
+    <tr>
+      <td align="left">&nbsp;</td>
+      <td align="left">&nbsp;</td>
+      <td align="left">&nbsp;</td>
+    </tr>
+    <tr>
+      <td align="left">1.4142</td>
+      <td align="left">...</td>
+      <td align="left">...</td>
+    </tr>
+  </tbody>
+</table>
+</p>
+
+Continuing this process, we obtain better and better
+approximations to
+the square root. " (From <span style="font-style: italic;">Structure
+and
+Interpretation of Computer Programs</span> by Abelson and
+Sussman).<br>
+
+Using&nbsp; a spreadsheet or calculator apply Newton's method to
+find
+the square root of 144 using an initial guess of
+1.&nbsp;&nbsp;&nbsp; How do
+you know when to stop?&nbsp; How many steps did it take you?<br>
+
+<br>
+
+2) Our example is the exponentiation function, which raises a
+number
+to a positive integer power. Here is a very simple implementation: <br>
+
+<dl>
+
+</dl>
+
+<ol>
+
+  <span style="font-family: monospace;">&gt; power
+:: Integer
+-&gt; Integer -&gt; Integer&nbsp;&nbsp;</span>&nbsp;&nbsp; <br>
+  <span style="font-family: monospace;">&gt; power a
+0 = 1&nbsp;</span>&nbsp;<span style="font-family: monospace;">&nbsp;&nbsp;
+  <br>
+  </span><span style="font-family: monospace;">&gt;
+power a b = a *
+power a (b-1)<br>
+  <br>
+</span>Before you begin this problem type the following at the prompt:<span style="font-family: monospace;"><br>
+&nbsp; &gt; :s +s<br>
+  </span>to turn the "statistics".<span style="font-family: monospace;"><br>
+  </span>
+</ol>
+
+<ol style="list-style-type: lower-alpha; margin-left: 40px;">
+
+  <li>[5pts] Show the steps in the evaluation of the expression<span style="font-family: monospace; font-weight: bold;"> power 2 5</span>,&nbsp; making sure not to
+reduce any subexpression prematurely.
+How do the time and maximum space
+required by the
+evaluation of <span style="font-family: monospace;">power
+n k</span>
+depend on <span style="font-style: italic;">n </span>and <span style="font-style: italic;">k</span>?
+&nbsp;What is the time complexity of <span style="font-style: italic;">power?<br>
+    </span><br>
+  </li>
+  
+  <li>Experiment with Hugs/GHCi.&nbsp; Run <br>
+&nbsp;&nbsp;&nbsp; &gt;&nbsp; <span style="font-family: monospace; font-weight: bold;">power 513 9999</span><br>
+Record the statistics (time and space)<br>
+<br>
+  </li>
+
+  <li>[5pts] Because of lazy evaluation, the definition of <span style="font-family: monospace; font-weight: bold;"><span style="font-style: italic;">power</span></span> accumulates of
+pending
+multiplications. It is inherent in the way power is
+defined&#8212;
+each multiplication has to wait until its right argument has been
+evaluated.<br>
+  </li>
+One way to eliminate the multiplication delay is to convert
+the function&#8217;s definition to a tail-recursive implementation: <br>
+  <br>
+  <span style="font-family: monospace;">&gt; powerT
+:: Integer -&gt;
+Integer -&gt; Integer</span><br style="font-family: monospace;">
+  <span style="font-family: monospace;">&gt; powerT
+a b = trp b 1</span><br style="font-family: monospace;">
+  <span style="font-family: monospace;">&gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+where</span><span style="font-family: monospace;"></span><br style="font-family: monospace;">
+  <span style="font-family: monospace;">&gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+trp n p = if (n==0) then p else trp (n-1) (a*p)<br>
+  </span><br style="font-family: monospace;">
+Show the steps in the evaluation of the expression <span style="font-family: monospace; font-weight: bold;">powerT 2 5</span>,
+making sure not to
+reduce any subexpression prematurely.&nbsp;&nbsp; <br>
+  <br>
+  
+  <li>Repeat the experiment for part (b)&nbsp; for <span style="font-family: monospace;">powerT. <br>
+    <span style="font-family: monospace; font-weight: bold;">&nbsp;&nbsp;&nbsp; </span><span style="font-weight: bold;">&gt;&nbsp; powerT 513 9999</span></span><br>
+Record the statistics (time and space) and compare the values to part (b).<br>
+<br>
+    <br>
+  </li>
+  <li><span style="font-family: monospace;"></span>[5pts]Convert the
+powerT to an iterative form (while loop) using the <a href="http://bingweb.binghamton.edu/%7Ehead/CS471/NOTES/HASKELL/2EhS05.html#iterativeform">conversion</a>
+technique discussed in class.<br>
+    <br>
+  </li>
+</ol>
+
+3) In Exercise 2 we improved power&#8217;s space
+performance, but
+all three versions take time linear in the exponent argument.<br>
+
+<br>
+<ol style="list-style-type: lower-alpha;">
+  <li>[5pt]Here is an algorithm which improves both time and
+space
+performance:</li>
+  <dd style="margin-left: 80px;"><span style="font-family: monospace;"><br>
+&nbsp; &nbsp; &gt;
+turboPower a 0 = 1 <br>
+&nbsp; &nbsp; &gt; turboPower a b <br>
+&nbsp; &nbsp; &gt;&nbsp;&nbsp;&nbsp;&nbsp;
+| even b = turboPower
+(a*a) (b `div` 2) <br>
+&nbsp; &nbsp; &gt;&nbsp;&nbsp;&nbsp;&nbsp;
+| otherwise = a *
+turboPower a (b-1)</span></dd>
+  <dd><span style="font-family: monospace;"></span><br>
+  </dd>
+Instead of merely decrementing its first argument, this
+algorithm
+halves it whenever it is even, thereby reaching termination much more
+quickly. What is the complexity of this algorithm? <span style="font-family: monospace;"><br>
+ </span><br>
+  <span style="font-family: monospace;"></span><span style="font-family: monospace;"> </span><li>Experiment with Hugs/GHCi.&nbsp; Turn on the :s +s to calculate the time and space used.&nbsp;&nbsp; Run <br>
+
+&nbsp;&nbsp;&nbsp; &gt;&nbsp; <span style="font-family: monospace; font-weight: bold;">turboPower 513 9999</span><br>
+
+Record the statistics (time and space).&nbsp; Compare with 2(b) and 2 (d).<br>
+    <br>
+</li>
+  <li>[10pts] Convert <span style="font-style: italic; font-family: monospace;">turboPower</span><span style="font-style: italic;">&nbsp; </span>to a tail recursive version -- call you new version&nbsp;<span style="font-family: monospace; font-weight: bold;">turboPowerT.</span><span style="font-style: italic;"> </span></li>
+
+  <br>
+</ol><br>
+</body></html>
