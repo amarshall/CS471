@@ -1,0 +1,194 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html lang="en-us"><head><title>Scott's Chap 8 &amp; 9</title>
+
+
+  
+
+  
+  
+  <meta http-equiv="content-type" content="text/html; charset=ISO-8859-1">
+
+  
+  <meta name="author" content="E Head"></head><body>
+<div style="text-align: center;">
+<h3>Homework Assignment 9</h3>
+</div>
+
+
+<h3>Assignment due Sat. Nov 13 Midnight&nbsp; <br>
+</h3>
+
+The homework has been shortened -- question page 497 exercise 9.17 has
+been remove.<br>
+
+Reading:<br>
+
+&nbsp;Chap 8: 383-410, 418-427<br>
+
+&nbsp;&nbsp;&nbsp;&nbsp; CYU: 1-12,13-25, 34,35<br>
+
+Chap 9 -<br>
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; CYU: 1-11,14-17,20,23,25,26,29, 31-33,
+35-36, 38, 39-41,43<br>
+
+<br>
+
+Please write you answers short and to the point.&nbsp;
+
+  
+    
+      <br>
+<ol>
+<dl>
+    <li>Consider the following function/macro definition in C:<br>
+      <br>
+    </li>
+    <dd><span style="font-family: monospace;"><span style="font-weight: bold;">#define SQUARE(x) x*x</span><br>
+      <br>
+      <span style="font-weight: bold;">int squaref (x) {</span></span></dd>
+    <dd style="font-weight: bold;"><span style="font-family: monospace;">&nbsp;
+&nbsp;return x * x;<br>
+}</span></dd>
+    <dt>Assume a = 4. <br>
+    </dt>
+    <br>
+  </dl>
+  <ol style="list-style-type: lower-alpha;">
+    <li>What is the result of the&nbsp;invocation of squaref(a) ?
+(Assume pass by value semantics.)</li>
+    <li>What is the computed result&nbsp; of SQUARE(a)?&nbsp;&nbsp;
+(Macro expansion.)<br>
+    </li>
+    <li>Give an example where squaref(x) and SQUARE(x) compute
+different values.<br>
+    </li>
+  </ol>
+  
+    <br>
+
+    <span style="font-family: monospace;"><br>
+    </span>
+    
+  <li>Consider the following code snippet in C-like syntax:</li>
+
+    
+  <dl style="font-family: monospace;">
+
+      <dd>int A[3];<br>
+        <br>
+int runit(){<br>
+&nbsp;&nbsp; int i = 1;<br>
+&nbsp;&nbsp; A[0] = 2;<br>
+&nbsp;&nbsp; A[1] = 1;<br>
+&nbsp;&nbsp; A[2] = 0;<br>
+&nbsp;&nbsp; mys(i,A[i]);<br>
+&nbsp;&nbsp; print(i, A[0], A[1], A[2]);<br>
+&nbsp;&nbsp; mys(a[1],A[i]);<br>
+&nbsp;&nbsp; print(i, A[0], A[1], A[2]);</dd>
+      <dd>&nbsp;&nbsp; return 0;</dd>
+      <dd>}<br>
+        <br>
+      </dd>
+      <dd>void mys(int x, int y){</dd>
+      <dd>&nbsp;&nbsp; x = x + y;<br>
+&nbsp;&nbsp; y = x - y;<br>
+&nbsp;&nbsp; x = x - y;</dd>
+      <dd>}</dd>
+    
+  </dl>
+
+    
+  <ol>
+
+      <dd><span style="font-family: monospace;"><br>
+        </span></dd>
+    
+  </ol>
+
+    <dt>What is the printout of <span style="font-style: italic;">runit</span>()&nbsp;
+assuming each of the following parameter-passing mechanisms.<span style="font-style: italic;">&nbsp; </span>Show
+how you determined the answer.&nbsp;&nbsp; There may be more
+than one
+correct answer.</dt>
+
+    
+  <ol style="list-style-type: upper-alpha;">
+
+      <li>By value.</li>
+      <li>By reference.</li>
+      <li>By value-result.</li>
+      <li>By macro expansion.</li>
+      <li>By name.</li>
+    
+  </ol>
+
+    <dd><br>
+      <br>
+    </dd>
+
+    
+  <ol style="list-style-type: upper-alpha;">
+
+    
+  </ol>
+
+  
+  <li>Page 442 exercise 8.18</li>
+  <li>Page 442 exercise 8.24</li>
+<li><a href="hw9.docx">Problem 5</a><br>
+  </li>
+  <li>Page 496 exercise 9.9<br>
+  </li>
+  <li>Page 496 exercise 9.14<br>
+  </li>
+  <li>Page 498 exercise 9.21.&nbsp; Explain your answer for both Java
+and C++.<br>
+    <br>
+  </li>
+</ol>
+
+-----------------------------------------------------------------------------------------------------<br>
+
+Understand the language design issues related to constructors.<br>
+
+Understand V-tables --especially how it works in C++.<br>
+
+The need for both generics and subtyping/dynamic binding.<br>
+
+Understand tradeoffs in the design of generics as illustrated by Java,
+C++ and C#.<br>
+
+-----------------------------------------------------------------------------------------------------<br>
+
+&nbsp;
+An interesting example: (This seems to be missing)<span class="fnt0"><font size="3"><br>
+</font></span><span class="fnt0"><br>
+1) Save file&nbsp; -- </span><span class="fnt0"><font size="3">http://mauke.ath.cx/stuff/poly.html<br>
+&nbsp;&nbsp;&nbsp;&nbsp; My copy of this file can be is at:<br>
+&nbsp;&nbsp;&nbsp;&nbsp; <a href="http://bingweb.binghamton.edu/%7Ehead/CS471/poly.html">http://bingweb.binghamton.edu/~head/CS471/poly.html</a><br>
+</font></span><span class="fnt0"><br>
+2) Look at the source code.&nbsp; It is <font size="3">a
+multi-linguistic source file.&nbsp; <br>
+<br>
+3) If you have the languages installed then you can<br>
+<br>
+</font>
+<div style="margin-left: 40px;"><font size="3">python poly.html<br>
+ruby poly.html<br>
+perl poly.html<br>
+bash poly.html</font></div>
+</span><br>
+<br>
+<br>
+Here is some more interesting code:<br>
+
+<ol>
+
+  <dl>
+  </dl>
+</ol>
+
+<a href="http://en.wikipedia.org/wiki/Obfuscated_code">Obfuscated code</a><br>
+
+</body></html>
