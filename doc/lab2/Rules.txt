@@ -1,0 +1,8 @@
+Info from File:: lab2Rb.c 
+  Data matching group 2 of RE Pattern:: (++++YOUR RE++++)
+
+  command -> expr '\n' 
+  expr -> term '+' expr | term  
+  term -> factor | factor '*' term  
+  factor -> '(' expr ')' | number 
+  number -> digit { digit } 
